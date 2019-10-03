@@ -1,0 +1,45 @@
+{
+  "name": "haassie/page-speed-insights",
+  "type": "typo3-cms-extension",
+  "description": "Dashboard for TYPO3.",
+  "homepage": "https://typo3.org",
+  "license": [
+    "GPL-2.0-or-later"
+  ],
+  "authors": [
+    {
+      "name": "Richard Haeser",
+      "role": "Developer"
+    }
+  ],
+  "config": {
+    "vendor-dir": ".build/vendor",
+    "bin-dir": ".build/bin"
+  },
+  "require": {
+    "typo3/cms-core": "^9.5 || 10.0.*@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Haassie\\PageSpeedInsights\\": "Classes/"
+    }
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "typo3/testing-framework": "^4.9 || ^5.0"
+  },
+  "scripts": {
+    "test:php:unit": [
+      "phpunit -c build/phpunit.xml"
+    ],
+    "test": [
+      "@test:php:unit"
+    ],
+    "cgl": [
+      "php-cs-fixer fix -v --dry-run --using-cache false"
+    ],
+    "cgl-fix": [
+      "php-cs-fixer fix -v --using-cache false"
+    ]
+  }
+}

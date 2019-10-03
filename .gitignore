@@ -1,0 +1,16 @@
+/.idea
+/composer.lock
+/.vscode
+/.DS_Store
+/.ddev
+
+/public
+/vendor
+/.php_cs.cache
+/.build
+/build/.phpunit.result.cache
+
+*.min.css
+*.css.map
+**/*temp_*
+**/node_modules
