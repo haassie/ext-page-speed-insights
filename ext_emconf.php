@@ -1,7 +1,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Page Speed Insights',
-    'description' => 'Page Speed Insights',
+    'title' => 'PageSpeed Insights',
+    'description' => 'PageSpeed Insights',
     'category' => 'fe',
     'author' => 'Richard Haeser',
     'author_email' => 'richardhaeser@gmail.com',

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-05-02T12:00:00Z">
+        <header/>
+        <body>
+            <trans-unit id="pages.tx_pagespeedinsights_check">
+                <source>Check on PageSpeed Insights</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.title">
+                <source>PageSpeed Insights result</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.date">
+                <source>Date</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.mobile_score_performance">
+                <source>Mobile performance score</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

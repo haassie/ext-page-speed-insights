@@ -1,8 +1,8 @@
 {
   "name": "haassie/page-speed-insights",
   "type": "typo3-cms-extension",
-  "description": "Dashboard for TYPO3.",
-  "homepage": "https://typo3.org",
+  "description": "PageSpeed Insights extension for TYPO3",
+  "homepage": "https://www.richardhaeser.com",
   "license": [
     "GPL-2.0-or-later"
   ],
