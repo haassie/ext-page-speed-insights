@@ -44,7 +44,6 @@ class CheckPageSpeedInsightsCommand extends Command
 
     protected function getUrlForPage(int $pageId): string
     {
-        return 'https://www.richardhaeser.com';
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
         $site = $siteFinder->getSiteByPageId($pageId);
         return (string)$site->getRouter()->generateUri($pageId);
