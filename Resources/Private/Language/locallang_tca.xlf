@@ -12,8 +12,26 @@
             <trans-unit id="tx_pagespeedinsights_results.date">
                 <source>Date</source>
             </trans-unit>
-            <trans-unit id="tx_pagespeedinsights_results.mobile_score_performance">
-                <source>Mobile performance score</source>
+            <trans-unit id="tx_pagespeedinsights_results.reference">
+                <source>Reference</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.strategy">
+                <source>Strategy</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.performance_score">
+                <source>Performance score</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.seo_score">
+                <source>SEO score</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.accessibility_score">
+                <source>Accessibility score</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.bestpractices_score">
+                <source>Best practices score</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.pwa_score">
+                <source>PWA score</source>
             </trans-unit>
         </body>
     </file>

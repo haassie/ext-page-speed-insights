@@ -17,7 +17,9 @@
     "bin-dir": ".build/bin"
   },
   "require": {
-    "typo3/cms-core": "^9.5 || 10.0.*@dev"
+    "typo3/cms-core": "^9.5 || 10.0.*@dev",
+    "ext-curl": "*",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {

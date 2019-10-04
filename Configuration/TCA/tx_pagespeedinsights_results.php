@@ -5,6 +5,8 @@ return [
     'ctrl' => [
         'title' => $llPrefix . 'tx_pagespeedinsights_results.title',
         'label' => 'date',
+        'label_alt' => 'strategy',
+        'label_alt_force' => true,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -20,14 +22,71 @@ return [
             'label' => $llPrefix . 'tx_pagespeedinsights_results.date',
             'config' => [
                 'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'readOnly' => true,
+                'eval' => 'datetime,trim'
+            ]
+        ],
+        'strategy' => [
+            'exclude' => true,
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.strategy',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
                 'eval' => 'trim'
             ]
         ],
-        'mobile_score_performance' => [
+        'performance_score' => [
             'exclude' => true,
-            'label' => $llPrefix . 'tx_pagespeedinsights_results.mobile_score_performance',
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.performance_score',
             'config' => [
                 'type' => 'input',
+                'readOnly' => true,
+                'eval' => 'trim'
+            ]
+        ],
+        'seo_score' => [
+            'exclude' => true,
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.seo_score',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
+                'eval' => 'trim'
+            ]
+        ],
+        'pwa_score' => [
+            'exclude' => true,
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.pwa_score',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
+                'eval' => 'trim'
+            ]
+        ],
+        'accessibility_score' => [
+            'exclude' => true,
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.accessibility_score',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
+                'eval' => 'trim'
+            ]
+        ],
+        'bestpractices_score' => [
+            'exclude' => true,
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.bestpractices_score',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
+                'eval' => 'trim'
+            ]
+        ],
+        'reference' => [
+            'exclude' => true,
+            'label' => $llPrefix . 'tx_pagespeedinsights_results.reference',
+            'config' => [
+                'type' => 'input',
+                'readOnly' => true,
                 'eval' => 'trim'
             ]
         ],
@@ -54,10 +113,10 @@ return [
     ],
     'palettes' => [
         'general' => [
-            'showitem' => 'date'
+            'showitem' => 'date, reference, strategy'
         ],
-        'mobile' => [
-            'showitem' => 'mobile_score_performance'
+        'score' => [
+            'showitem' => 'performance_score, seo_score, accessibility_score, bestpractices_score, pwa_score'
         ],
     ],
     'types' => [
@@ -65,7 +124,7 @@ return [
             'showitem' => '
                 --div--;Results,
                     --palette;;general,
-                    --palette;;mobile,
+                    --palette;;score,
                 --div--;Visibility, sys_language_uid,
             '
         ]
