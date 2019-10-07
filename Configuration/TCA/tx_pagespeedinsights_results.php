@@ -122,10 +122,11 @@ return [
     'types' => [
         '0' => [
             'showitem' => '
-                --div--;Results,
+                --div--;' . $llPrefix . 'tx_pagespeedinsights_results.tab.results,
                     --palette--;;general,
                     --palette--;;score,
-                --div--;Visibility, sys_language_uid,
+                --div--;' . $llPrefix . 'tx_pagespeedinsights_results.tab.language,
+                    sys_language_uid,
             '
         ]
     ],

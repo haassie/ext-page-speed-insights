@@ -36,6 +36,12 @@
             <trans-unit id="tx_pagespeedinsights_results.pwa_score">
                 <source>PWA score</source>
             </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.tab.results">
+                <source>Results</source>
+            </trans-unit>
+            <trans-unit id="tx_pagespeedinsights_results.tab.language">
+                <source>Language</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
