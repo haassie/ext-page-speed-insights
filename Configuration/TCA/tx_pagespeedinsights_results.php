@@ -123,8 +123,8 @@ return [
         '0' => [
             'showitem' => '
                 --div--;Results,
-                    --palette;;general,
-                    --palette;;score,
+                    --palette--;;general,
+                    --palette--;;score,
                 --div--;Visibility, sys_language_uid,
             '
         ]

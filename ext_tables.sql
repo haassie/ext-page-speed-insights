@@ -3,7 +3,8 @@
 #
 CREATE TABLE pages
 (
-    tx_pagespeedinsights_check tinyint(4) DEFAULT '0' NOT NULL
+    tx_pagespeedinsights_check tinyint(4) DEFAULT '0' NOT NULL,
+    tx_pagespeedinsights_results tinyint(4) DEFAULT '0' NOT NULL
 );
 
 CREATE TABLE tx_pagespeedinsights_results
