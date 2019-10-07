@@ -151,7 +151,6 @@ class PageSpeedInsightsUtility
 
     public static function getUrlForPage(int $pid, int $languageId): string
     {
-        return 'https://www.richardhaeser.com';
         $rootLine = BackendUtility::BEgetRootLine($pid);
 
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
