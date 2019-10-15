@@ -161,4 +161,26 @@ class PageSpeedInsightsUtility
 
         return (string)$site->getRouter()->generateUri($pid, $additionalQueryParams);
     }
+
+    public static function getLastRun($pageId = 0): string
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
+
+        $constraints = [
+            $queryBuilder->expr()->eq('t3ver_id', 0)
+        ];
+        if ($pageId > 0) {
+            $constraints[] = $queryBuilder->expr()->eq('page_id', $pageId);
+        }
+        $data = $queryBuilder
+            ->select('reference')
+            ->from('tx_pagespeedinsights_results')
+            ->where(...$constraints)
+            ->orderBy('tstamp', 'DESC')
+            ->setMaxResults(1)
+            ->execute()
+            ->fetch();
+
+        return $data['reference'];
+    }
 }
