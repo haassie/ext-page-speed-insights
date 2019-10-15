@@ -133,7 +133,6 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
         $row = $queryBuilder
-            ->select('tstamp')
             ->addSelectLiteral(
                 $queryBuilder->expr()->avg($field, 'avg')
             )

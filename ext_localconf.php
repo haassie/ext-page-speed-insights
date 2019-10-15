@@ -1,6 +1,7 @@
 <?php
 
 use FriendsOfTYPO3\Dashboard\Registry\WidgetRegistry;
+use Haassie\PageSpeedInsights\Widgets\LighthouseAccessibilityScoreWidget;
 use Haassie\PageSpeedInsights\Widgets\LighthouseBestPracticesScoreWidget;
 use Haassie\PageSpeedInsights\Widgets\LighthousePerformanceScoreWidget;
 use Haassie\PageSpeedInsights\Widgets\LighthousePwaScoreWidget;
@@ -17,5 +18,6 @@ if (ExtensionManagementUtility::isLoaded('dashboard')) {
     $widgetRegistry->registerWidget('lighthouseSeoScore', LighthouseSeoScoreWidget::class);
     $widgetRegistry->registerWidget('lighthouseBestPracticesScore', LighthouseBestPracticesScoreWidget::class);
     $widgetRegistry->registerWidget('lighthousePwaScore', LighthousePwaScoreWidget::class);
+    $widgetRegistry->registerWidget('lighthouseAccessibilityScore', LighthouseAccessibilityScoreWidget::class);
     $widgetRegistry->registerWidget('LighthouseScoreHistoryWidget', LighthouseScoreHistoryWidget::class);
 }

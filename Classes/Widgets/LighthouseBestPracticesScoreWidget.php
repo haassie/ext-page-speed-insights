@@ -24,7 +24,6 @@ class LighthouseBestPracticesScoreWidget extends AbstractLighthouseDoughnutWidge
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
         $data = $queryBuilder
-            ->select('tstamp')
             ->addSelectLiteral(
                 $queryBuilder->expr()->avg('bestpractices_score', 'avg_bestpractices')
             )
@@ -35,7 +34,9 @@ class LighthouseBestPracticesScoreWidget extends AbstractLighthouseDoughnutWidge
             ->execute()
             ->fetch();
 
+        list($mode, $tstamp) = GeneralUtility::trimExplode('-', $lastRun);
+
         $this->score = (int)$data['avg_bestpractices'];
-        $this->lastCheck = (int)$data['tstamp'];
+        $this->lastCheck = (int)$tstamp;
     }
 }

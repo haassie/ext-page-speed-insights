@@ -24,7 +24,6 @@ class LighthouseSeoScoreWidget extends AbstractLighthouseDoughnutWidget
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
         $data = $queryBuilder
-            ->select('tstamp')
             ->addSelectLiteral(
                 $queryBuilder->expr()->avg('seo_score', 'avg_seo')
             )
@@ -35,7 +34,9 @@ class LighthouseSeoScoreWidget extends AbstractLighthouseDoughnutWidget
             ->execute()
             ->fetch();
 
+        list($mode, $tstamp) = GeneralUtility::trimExplode('-', $lastRun);
+
         $this->score = (int)$data['avg_seo'];
-        $this->lastCheck = (int)$data['tstamp'];
+        $this->lastCheck = (int)$tstamp;
     }
 }

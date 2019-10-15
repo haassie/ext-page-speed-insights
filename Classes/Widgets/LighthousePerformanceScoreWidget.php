@@ -24,7 +24,6 @@ class LighthousePerformanceScoreWidget extends AbstractLighthouseDoughnutWidget
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
         $data = $queryBuilder
-            ->select('tstamp')
             ->addSelectLiteral(
                 $queryBuilder->expr()->avg('performance_score', 'avg_performance')
             )
@@ -35,7 +34,9 @@ class LighthousePerformanceScoreWidget extends AbstractLighthouseDoughnutWidget
             ->execute()
             ->fetch();
 
+        list($mode, $tstamp) = GeneralUtility::trimExplode('-', $lastRun);
+
         $this->score = (int)$data['avg_performance'];
-        $this->lastCheck = (int)$data['tstamp'];
+        $this->lastCheck = (int)$tstamp;
     }
 }
