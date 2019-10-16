@@ -19,7 +19,7 @@ abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWid
      */
     protected $title = '';
 
-    protected $height = 2;
+    protected $height = 4;
 
     protected $score = 0;
 
