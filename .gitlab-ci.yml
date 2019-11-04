@@ -10,9 +10,13 @@ variables:
   TYPO3_VERSION: ^9.5
   TYPO3_PATH_WEB: "$CI_PROJECT_DIR/public"
 
+stages:
+  - cgl
+  - test
+
 cgl:
   image: composer
-  stage: test
+  stage: cgl
   before_script:
     - composer require typo3/cms-core="${TYPO3_VERSION}" --ignore-platform-reqs
   script:
