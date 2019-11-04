@@ -42,13 +42,13 @@ cgl:
   script:
     - find . -type f -name \*.php ! -path "./public/*" ! -path "./.build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null
 
-typo3_9lts_php72 1/1:
+typo3_9lts_php72:
   <<: *test_php
   image: php:7.2-alpine
   variables:
     TYPO3_VERSION: ^9.5
 
-typo3_9lts_php73 1/1:
+typo3_9lts_php73:
   <<: *test_php
   image: php:7.3-alpine
   variables:
