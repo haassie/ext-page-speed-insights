@@ -183,4 +183,102 @@ class PageSpeedInsightsUtility
 
         return $data['reference'];
     }
+
+
+    /**
+     * @param string $chartColor1
+     * @param string $chartColor2
+     * @param string $chartColor3
+     * @param string $chartColor4
+     * @param string $chartColor5
+     * @param string $labelFormat
+     * @return array
+     */
+    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
+    {
+        $labels = [];
+        $dataPerformance = [];
+        $dataSeo = [];
+        $dataAccessibility = [];
+        $dataBestPractices = [];
+        $dataPwa = [];
+
+        for ($daysBefore = $daysInPastToStartFrom; $daysBefore > 0; $daysBefore-=$daysPerStep) {
+            $labels[] = strftime($labelFormat, strtotime('-' . $daysBefore . ' day'));
+            $startPeriod = strtotime('-' . $daysBefore . ' day 0:00:00');
+            $endPeriod =  strtotime('-' . ($daysBefore - $daysPerStep + 1) . ' day 23:59:59');
+
+            $dataPerformance[] = self::getAverageScoreInPeriod('performance_score', $startPeriod, $endPeriod);
+            $dataSeo[] = self::getAverageScoreInPeriod('seo_score', $startPeriod, $endPeriod);
+            $dataAccessibility[] = self::getAverageScoreInPeriod('accessibility_score', $startPeriod, $endPeriod);
+            $dataBestPractices[] = self::getAverageScoreInPeriod('bestpractices_score', $startPeriod, $endPeriod);
+            $dataPwa[] = self::getAverageScoreInPeriod('pwa_score', $startPeriod, $endPeriod);
+        }
+
+
+        return [
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Performance',
+                    'borderColor' => $chartColor1,
+                    'backgroundColor' => $chartColor1,
+                    'fill' => false,
+                    'data' => $dataPerformance
+                ],
+                [
+                    'label' => 'SEO',
+                    'borderColor' => $chartColor2,
+                    'backgroundColor' => $chartColor2,
+                    'fill' => false,
+                    'data' => $dataSeo
+                ],
+                [
+                    'label' => 'Accessibility',
+                    'borderColor' => $chartColor3,
+                    'backgroundColor' => $chartColor3,
+                    'fill' => false,
+                    'data' => $dataAccessibility
+                ],
+                [
+                    'label' => 'Best practices',
+                    'borderColor' => $chartColor4,
+                    'backgroundColor' => $chartColor4,
+                    'fill' => false,
+                    'data' => $dataBestPractices
+                ],
+                [
+                    'label' => 'PWA',
+                    'borderColor' => $chartColor5,
+                    'backgroundColor' => $chartColor5,
+                    'fill' => false,
+                    'data' => $dataPwa
+                ],
+            ]
+        ];
+    }
+
+    /**
+     * @param string $field
+     * @param int $start
+     * @param int $end
+     * @return int
+     */
+    protected static function getAverageScoreInPeriod(string $field, int $start, int $end): int
+    {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
+        $row = $queryBuilder
+            ->addSelectLiteral(
+                $queryBuilder->expr()->avg($field, 'avg')
+            )
+            ->from('tx_pagespeedinsights_results')
+            ->where(
+                $queryBuilder->expr()->gte('tstamp', $start),
+                $queryBuilder->expr()->lte('tstamp', $end)
+            )
+            ->execute()
+            ->fetch();
+
+        return (int)$row['avg'];
+    }
 }

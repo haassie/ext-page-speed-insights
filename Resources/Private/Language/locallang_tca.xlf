@@ -7,7 +7,7 @@
                 <source>Check on PageSpeed Insights</source>
             </trans-unit>
             <trans-unit id="pages.tx_pagespeedinsights_results">
-                <source>PageSpeed Insights Results (last 24)</source>
+                <source>PageSpeed Insights Results</source>
             </trans-unit>
             <trans-unit id="tx_pagespeedinsights_results.title">
                 <source>PageSpeed Insights result</source>
