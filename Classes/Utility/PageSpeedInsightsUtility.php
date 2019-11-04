@@ -181,7 +181,7 @@ class PageSpeedInsightsUtility
             ->execute()
             ->fetch();
 
-        return $data['reference'];
+        return (string)$data['reference'];
     }
 
     /**
@@ -289,5 +289,31 @@ class PageSpeedInsightsUtility
             ->fetch();
 
         return (int)$row['avg'];
+    }
+
+    public static function getLastScore(string $field, int $pageId = 0): int
+    {
+        $lastRun = self::getLastRun($pageId);
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
+        $conditions = [
+            $queryBuilder->expr()->eq('reference', $queryBuilder->createNamedParameter($lastRun))
+        ];
+        if (!empty($pageId)) {
+            $conditions[] = $queryBuilder->expr()->eq('page_id', $pageId);
+        }
+
+        $data = $queryBuilder
+            ->addSelectLiteral(
+                $queryBuilder->expr()->avg($field, 'avg')
+            )
+            ->from('tx_pagespeedinsights_results')
+            ->where(...$conditions)
+            ->execute()
+            ->fetch();
+
+        list($mode, $tstamp) = GeneralUtility::trimExplode('-', $lastRun);
+
+        return (int)$data['avg'];
     }
 }

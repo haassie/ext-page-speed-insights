@@ -20,6 +20,10 @@ class History extends AbstractNode
 
     protected $chartColors = ['#f49702', '#a4276a', '#1a568f', '#4c7e3a', '#69bbb5'];
 
+    protected $colorRed = '#ff4f42';
+    protected $colorOrange = '#ffa600';
+    protected $colorGreen = '#0cce6a';
+
     /**
      * History constructor.
      * @param NodeFactory $nodeFactory
@@ -81,16 +85,62 @@ class History extends AbstractNode
 
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/PageSpeedInsights/History');
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/PageSpeedInsights/HistorySelector');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/PageSpeedInsights/Scores');
+
+        $pageRenderer->addCssFile('EXT:page_speed_insights/Resources/Public/Css/Style.css');
+
+        list($mode, $tstamp) = GeneralUtility::trimExplode('-', PageSpeedInsightsUtility::getLastRun($pageId));
+
 
         $this->templateView->assignMultiple([
            'hash' => $hash,
            'period' => 'month',
+           'lastRun' => $tstamp,
            'dataYear' => json_encode($dataYear),
            'dataMonth' => json_encode($dataMonth),
-           'dataWeek' => json_encode($dataWeek)
+           'dataWeek' => json_encode($dataWeek),
+           'scorePerformanceData' => json_encode($this->getScoreData($pageId, 'performance_score')),
+           'scorePerformance' => PageSpeedInsightsUtility::getLastScore('performance_score', $pageId),
+           'scoreSeoData' => json_encode($this->getScoreData($pageId, 'seo_score')),
+           'scoreSeo' => PageSpeedInsightsUtility::getLastScore('seo_score', $pageId),
+           'scoreAccessibilityData' => json_encode($this->getScoreData($pageId, 'accessibility_score')),
+           'scoreAccessibility' => PageSpeedInsightsUtility::getLastScore('accessibility_score', $pageId),
+           'scoreBestPracticeData' => json_encode($this->getScoreData($pageId, 'bestpractices_score')),
+           'scoreBestPractice' => PageSpeedInsightsUtility::getLastScore('bestpractices_score', $pageId),
+           'scorePwaData' => json_encode($this->getScoreData($pageId, 'pwa_score')),
+           'scorePwa' => PageSpeedInsightsUtility::getLastScore('pwa_score', $pageId),
         ]);
         $resultArray['html'] = $this->templateView->render();
 
         return $resultArray;
     }
+
+    protected function getScoreData($pageId, $field = 'performance_score'): array
+    {
+        $score = PageSpeedInsightsUtility::getLastScore($field, $pageId);
+        return [
+            'labels' => ['', ''],
+            'datasets' => [
+                [
+                    'backgroundColor' => [$this->getColor($score), '#fafafa'],
+                    'data' => [$score, 100 - $score],
+                    'borderWidth' => 0
+                ]
+            ],
+        ];
+
+
+    }
+
+    protected function getColor($score): string
+    {
+        if ($score >= 90) {
+            return $this->colorGreen;
+        }
+        if ($score >= 50) {
+            return $this->colorOrange;
+        }
+        return $this->colorRed;
+    }
+
 }

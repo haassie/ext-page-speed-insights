@@ -21,6 +21,21 @@
             <trans-unit id="pages.tx_pagespeedinsights_results.label">
                 <source>Show results of:</source>
             </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.perf_score">
+                <source>Performance</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.seo_score">
+                <source>SEO</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.accessibility_score">
+                <source>Accessibility</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.bestpractices_score">
+                <source>Best practices</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.pwa_score">
+                <source>PWA</source>
+            </trans-unit>
             <trans-unit id="tx_pagespeedinsights_results.title">
                 <source>PageSpeed Insights result</source>
             </trans-unit>

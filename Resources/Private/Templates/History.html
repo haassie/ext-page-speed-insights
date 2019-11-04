@@ -1,21 +1,97 @@
-<div>
-    <select id="period_{hash}" data-hash="{hash}" style="float: right;" class="page_speed_insights_history_selector">
-        <option value="year" {f:if(condition: '{period} == "year"', then: 'selected')}>
-            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.year" default="year" />
-        </option>
-        <option value="month" {f:if(condition: '{period} == "month"', then: 'selected')}>
-            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.month" default="month" />
-        </option>
-        <option value="week" {f:if(condition: '{period} == "week"', then: 'selected')}>
-            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.week" default="week" />
-        </option>
-    </select>
-    <label for="period_{hash}" style="float: right; margin-right: 5px;"><f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.label" default="Show results of" /></label>
-</div>
-<canvas class="page_speed_insights_history" id="history_{hash}" data-var-name="data_{period}_{hash}" width="400" height="100"></canvas>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-1">
+            <f:render section="perf_score" arguments="{_all}" />
+        </div>
+        <div class="col-sm-2">
+            <f:render section="seo_score" arguments="{_all}" />
+        </div>
+        <div class="col-sm-2">
+            <f:render section="accessibility_score" arguments="{_all}" />
+        </div>
+        <div class="col-sm-2">
+            <f:render section="bestpractice_score" arguments="{_all}" />
+        </div>
+        <div class="col-sm-2">
+            <f:render section="pwa_score" arguments="{_all}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 page_speed_insights_meta">Last data: {lastRun -> f:format.date(format: 'd-m-Y H:i')}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <f:render section="history" arguments="{_all}" />
+        </div>
+    </div>
 
-<script>
-    var data_year_{hash} = {dataYear->f:format.raw()}
-    var data_month_{hash} = {dataMonth->f:format.raw()}
-    var data_week_{hash} = {dataWeek->f:format.raw()}
-</script>
+    <script>
+        var data_year_{hash} = {dataYear->f:format.raw()};
+        var data_month_{hash} = {dataMonth->f:format.raw()};
+        var data_week_{hash} = {dataWeek->f:format.raw()};
+
+        var perf_score_{hash} = {scorePerformanceData->f:format.raw()};
+        var seo_score_{hash} = {scoreSeoData->f:format.raw()};
+        var accessibility_score_{hash} = {scoreAccessibilityData->f:format.raw()};
+        var bestpractice_score_{hash} = {scoreBestPracticeData->f:format.raw()};
+        var pwa_score_{hash} = {scorePwaData->f:format.raw()};
+    </script>
+
+<f:section name="perf_score">
+    <canvas class="page_speed_insights_score" id="performance_{hash}" data-var-name="perf_score_{hash}" width="100" height="100"></canvas>
+    <div class="page_speed_insights_score_label">
+        <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.perf_score" default="performance" />
+    </div>
+    <div class="page_speed_insights_score_value">{scorePerformance}</div>
+</f:section>
+
+<f:section name="seo_score">
+    <canvas class="page_speed_insights_score" id="seo_{hash}" data-var-name="seo_score_{hash}" width="100" height="100"></canvas>
+
+    <div class="page_speed_insights_score_label">
+        <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.seo_score" default="seo" />
+    </div>
+    <div class="page_speed_insights_score_value">{scoreSeo}</div>
+</f:section>
+
+<f:section name="accessibility_score">
+    <canvas class="page_speed_insights_score" id="accessibility_{hash}" data-var-name="accessibility_score_{hash}" width="100" height="100"></canvas>
+    <div class="page_speed_insights_score_label">
+        <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.accessibility_score" default="accessibility" />
+    </div>
+    <div class="page_speed_insights_score_value">{scoreAccessibility}</div>
+</f:section>
+
+<f:section name="bestpractice_score">
+    <canvas class="page_speed_insights_score" id="bestpractice_{hash}" data-var-name="bestpractice_score_{hash}" width="100" height="100"></canvas>
+    <div class="page_speed_insights_score_label">
+        <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.bestpractices_score" default="best practices" />
+    </div>
+    <div class="page_speed_insights_score_value">{scoreBestPractice}</div>
+</f:section>
+
+<f:section name="pwa_score">
+    <canvas class="page_speed_insights_score" id="pwa_{hash}" data-var-name="pwa_score_{hash}" width="100" height="100"></canvas>
+    <div class="page_speed_insights_score_label">
+        <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.pwa_score" default="pwa" />
+    </div>
+    <div class="page_speed_insights_score_value">{scorePwa}</div>
+</f:section>
+
+<f:section name="history">
+    <div>
+        <select id="period_{hash}" data-hash="{hash}" style="float: right;" class="page_speed_insights_history_selector">
+            <option value="year" {f:if(condition: '{period} == "year"', then: 'selected')}>
+            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.year" default="year" />
+            </option>
+            <option value="month" {f:if(condition: '{period} == "month"', then: 'selected')}>
+            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.month" default="month" />
+            </option>
+            <option value="week" {f:if(condition: '{period} == "week"', then: 'selected')}>
+            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.week" default="week" />
+            </option>
+        </select>
+        <label for="period_{hash}" style="float: right; margin-right: 5px;"><f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.label" default="Show results of" /></label>
+    </div>
+    <canvas class="page_speed_insights_history" id="history_{hash}" data-var-name="data_{period}_{hash}" width="400" height="100"></canvas>
+</f:section>
+
