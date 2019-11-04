@@ -41,6 +41,7 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
         $this->chartData = PageSpeedInsightsUtility::getChartData(
             31,
             1,
+            0,
             $this->chartColors[0],
             $this->chartColors[1],
             $this->chartColors[2],

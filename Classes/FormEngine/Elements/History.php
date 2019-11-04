@@ -37,6 +37,10 @@ class History extends AbstractNode
 
     public function render()
     {
+        $pageId = 0;
+        if (!empty($this->data['tableName']) && $this->data['tableName'] === 'pages' && !empty($this->data['vanillaUid'])) {
+            $pageId = $this->data['vanillaUid'];
+        }
         $resultArray = $this->initializeResultArray();
 
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
@@ -45,6 +49,7 @@ class History extends AbstractNode
         $data = PageSpeedInsightsUtility::getChartData(
             356,
             7,
+            $pageId,
             $this->chartColors[0],
             $this->chartColors[1],
             $this->chartColors[2],

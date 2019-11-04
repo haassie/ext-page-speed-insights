@@ -185,6 +185,9 @@ class PageSpeedInsightsUtility
     }
 
     /**
+     * @param int $daysInPastToStartFrom
+     * @param int $daysPerStep
+     * @param int $pageId 0 = all pages
      * @param string $chartColor1
      * @param string $chartColor2
      * @param string $chartColor3
@@ -193,7 +196,7 @@ class PageSpeedInsightsUtility
      * @param string $labelFormat
      * @return array
      */
-    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
+    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
     {
         $labels = [];
         $dataPerformance = [];
@@ -207,11 +210,11 @@ class PageSpeedInsightsUtility
             $startPeriod = strtotime('-' . $daysBefore . ' day 0:00:00');
             $endPeriod =  strtotime('-' . ($daysBefore - $daysPerStep + 1) . ' day 23:59:59');
 
-            $dataPerformance[] = self::getAverageScoreInPeriod('performance_score', $startPeriod, $endPeriod);
-            $dataSeo[] = self::getAverageScoreInPeriod('seo_score', $startPeriod, $endPeriod);
-            $dataAccessibility[] = self::getAverageScoreInPeriod('accessibility_score', $startPeriod, $endPeriod);
-            $dataBestPractices[] = self::getAverageScoreInPeriod('bestpractices_score', $startPeriod, $endPeriod);
-            $dataPwa[] = self::getAverageScoreInPeriod('pwa_score', $startPeriod, $endPeriod);
+            $dataPerformance[] = self::getAverageScoreInPeriod('performance_score', $startPeriod, $endPeriod, $pageId);
+            $dataSeo[] = self::getAverageScoreInPeriod('seo_score', $startPeriod, $endPeriod, $pageId);
+            $dataAccessibility[] = self::getAverageScoreInPeriod('accessibility_score', $startPeriod, $endPeriod, $pageId);
+            $dataBestPractices[] = self::getAverageScoreInPeriod('bestpractices_score', $startPeriod, $endPeriod, $pageId);
+            $dataPwa[] = self::getAverageScoreInPeriod('pwa_score', $startPeriod, $endPeriod, $pageId);
         }
 
         return [
@@ -260,20 +263,28 @@ class PageSpeedInsightsUtility
      * @param string $field
      * @param int $start
      * @param int $end
+     * @param int $pageId
      * @return int
      */
-    protected static function getAverageScoreInPeriod(string $field, int $start, int $end): int
+    protected static function getAverageScoreInPeriod(string $field, int $start, int $end, int $pageId = 0): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
+
+        $conditions = [
+            $queryBuilder->expr()->gte('tstamp', $start),
+            $queryBuilder->expr()->lte('tstamp', $end)
+        ];
+
+        if (!empty($pageId)) {
+            $conditions[] = $queryBuilder->expr()->eq('page_id', $pageId);
+        }
+
         $row = $queryBuilder
             ->addSelectLiteral(
                 $queryBuilder->expr()->avg($field, 'avg')
             )
             ->from('tx_pagespeedinsights_results')
-            ->where(
-                $queryBuilder->expr()->gte('tstamp', $start),
-                $queryBuilder->expr()->lte('tstamp', $end)
-            )
+            ->where(...$conditions)
             ->execute()
             ->fetch();
 
