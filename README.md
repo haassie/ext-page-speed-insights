@@ -1,6 +1,9 @@
 Page Speed Insights for TYPO3
 =============================
 
+[![Pipeline](https://gitlab.com/haassie/ext-page-speed-insights/badges/master/pipeline.svg)](https://gitlab.com/haassie/ext-page-speed-insights/pipelines)
+
+
 The performance of your website is important for several reasons. The most important one is that if a page is to slow
 you will lose visitors. Studies showed that over 50% of the people will leave a page that takes longer than three seconds
 to load. 
