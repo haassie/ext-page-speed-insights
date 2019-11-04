@@ -35,6 +35,12 @@ Using this extension is quite simple and consists of some simple steps:
 - Now make sure the scheduler job will run as often you would like to run the analysis. My personal preference is once a day.
 - After a run you can see the results in the page properties with an overview of the results of the last year.
 
+Configuration
+-------------
+No configuration is needed, but a 1 configuration option is available. If you want to monitor the API requests or if you
+will need more than 25.000 check per day, you might want to set your Google API key. You can do this as an argument of the
+command in the scheduler.
+
 Dashboard
 ---------
 Are you testing the new [dashboard for TYPO3](https://github.com/TYPO3-Initiatives/dashboard)? This extension will add
