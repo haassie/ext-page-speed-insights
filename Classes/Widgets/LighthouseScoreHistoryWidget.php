@@ -34,9 +34,6 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
     {
     }
 
-    /**
-     *
-     */
     protected function prepareChartData(): void
     {
         parent::prepareChartData();

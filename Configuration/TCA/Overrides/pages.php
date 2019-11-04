@@ -1,7 +1,5 @@
 <?php
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-
 $llPrefix = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:';
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(

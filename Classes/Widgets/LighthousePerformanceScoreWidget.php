@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Haassie\PageSpeedInsights\Widgets;
 
-
 use Haassie\PageSpeedInsights\Utility\PageSpeedInsightsUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

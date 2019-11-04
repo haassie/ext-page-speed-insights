@@ -41,7 +41,7 @@ class CheckPageSpeedInsightsCommand extends Command
             $url = PageSpeedInsightsUtility::getUrlForPage($pid, $languageId);
             $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'], $reference, $pageId, $languageId, $pid);
             $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'], $reference, $pageId, $languageId, $pid);
-            $output->writeln($row['uid'] . ': ' . $row['slug']. ': ' . $url);
+            $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url);
         }
     }
 }

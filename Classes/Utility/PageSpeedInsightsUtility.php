@@ -184,7 +184,6 @@ class PageSpeedInsightsUtility
         return $data['reference'];
     }
 
-
     /**
      * @param string $chartColor1
      * @param string $chartColor2
@@ -214,7 +213,6 @@ class PageSpeedInsightsUtility
             $dataBestPractices[] = self::getAverageScoreInPeriod('bestpractices_score', $startPeriod, $endPeriod);
             $dataPwa[] = self::getAverageScoreInPeriod('pwa_score', $startPeriod, $endPeriod);
         }
-
 
         return [
             'labels' => $labels,
