@@ -4,10 +4,10 @@
         <header/>
         <body>
             <trans-unit id="pages.tx_pagespeedinsights_check">
-                <source>Check on PageSpeed Insights</source>
+                <source>Analyze with PageSpeed Insights</source>
             </trans-unit>
             <trans-unit id="pages.tx_pagespeedinsights_results">
-                <source>PageSpeed Insights Results</source>
+                <source>Results</source>
             </trans-unit>
             <trans-unit id="tx_pagespeedinsights_results.title">
                 <source>PageSpeed Insights result</source>
