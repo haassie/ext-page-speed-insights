@@ -9,6 +9,18 @@
             <trans-unit id="pages.tx_pagespeedinsights_results">
                 <source>Results</source>
             </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.week">
+                <source>Last week</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.month">
+                <source>Last month</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.year">
+                <source>Last year</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.label">
+                <source>Show results of:</source>
+            </trans-unit>
             <trans-unit id="tx_pagespeedinsights_results.title">
                 <source>PageSpeed Insights result</source>
             </trans-unit>

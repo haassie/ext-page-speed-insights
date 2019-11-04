@@ -46,7 +46,7 @@ class History extends AbstractNode
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
 
         $hash = GeneralUtility::makeInstance(Random::class)->generateRandomHexString(12);
-        $data = PageSpeedInsightsUtility::getChartData(
+        $dataYear = PageSpeedInsightsUtility::getChartData(
             356,
             7,
             $pageId,
@@ -57,11 +57,37 @@ class History extends AbstractNode
             $this->chartColors[4]
         );
 
+        $dataMonth = PageSpeedInsightsUtility::getChartData(
+            31,
+            1,
+            $pageId,
+            $this->chartColors[0],
+            $this->chartColors[1],
+            $this->chartColors[2],
+            $this->chartColors[3],
+            $this->chartColors[4]
+        );
+
+        $dataWeek = PageSpeedInsightsUtility::getChartData(
+            7,
+            1,
+            $pageId,
+            $this->chartColors[0],
+            $this->chartColors[1],
+            $this->chartColors[2],
+            $this->chartColors[3],
+            $this->chartColors[4]
+        );
+
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/PageSpeedInsights/History');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/PageSpeedInsights/HistorySelector');
 
         $this->templateView->assignMultiple([
            'hash' => $hash,
-           'data' => json_encode($data)
+           'period' => 'month',
+           'dataYear' => json_encode($dataYear),
+           'dataMonth' => json_encode($dataMonth),
+           'dataWeek' => json_encode($dataWeek)
         ]);
         $resultArray['html'] = $this->templateView->render();
 

@@ -1,5 +1,21 @@
-<canvas class="page_speed_insights_history" data-var-name="data_{hash}" width="400" height="100"></canvas>
+<div>
+    <select id="period_{hash}" data-hash="{hash}" style="float: right;" class="page_speed_insights_history_selector">
+        <option value="year" {f:if(condition: '{period} == "year"', then: 'selected')}>
+            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.year" default="year" />
+        </option>
+        <option value="month" {f:if(condition: '{period} == "month"', then: 'selected')}>
+            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.month" default="month" />
+        </option>
+        <option value="week" {f:if(condition: '{period} == "week"', then: 'selected')}>
+            <f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.week" default="week" />
+        </option>
+    </select>
+    <label for="period_{hash}" style="float: right; margin-right: 5px;"><f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.label" default="Show results of" /></label>
+</div>
+<canvas class="page_speed_insights_history" id="history_{hash}" data-var-name="data_{period}_{hash}" width="400" height="100"></canvas>
 
 <script>
-    var data_{hash} = {data->f:format.raw()}
+    var data_year_{hash} = {dataYear->f:format.raw()}
+    var data_month_{hash} = {dataMonth->f:format.raw()}
+    var data_week_{hash} = {dataWeek->f:format.raw()}
 </script>
