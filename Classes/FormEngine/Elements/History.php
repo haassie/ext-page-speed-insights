@@ -91,7 +91,6 @@ class History extends AbstractNode
 
         list($mode, $tstamp) = GeneralUtility::trimExplode('-', PageSpeedInsightsUtility::getLastRun($pageId));
 
-
         $this->templateView->assignMultiple([
            'hash' => $hash,
            'period' => 'month',
@@ -128,8 +127,6 @@ class History extends AbstractNode
                 ]
             ],
         ];
-
-
     }
 
     protected function getColor($score): string
@@ -142,5 +139,4 @@ class History extends AbstractNode
         }
         return $this->colorRed;
     }
-
 }
