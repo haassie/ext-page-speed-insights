@@ -46,3 +46,11 @@ Some things on the roadmap:
 - Show performance score in page module
 - Add suggestions how to make your page faster
 - Reporting of results
+
+Sponsoring
+----------
+Do you like this extension and do you use it on production environments? Please help me to maintain this extension and
+become a sponsor. Check [my website](https://www.richardhaeser.com/sponsoring) for more information. You can already
+help me by [buying me a coffee](https://www.buymeacoffee.com/richardhaeser).
+
+[![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/richardhaeser)
