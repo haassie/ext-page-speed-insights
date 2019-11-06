@@ -13,6 +13,5 @@ call_user_func(function () {
 
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/db_layout.php']['drawHeaderHook'][]
             = \Haassie\PageSpeedInsights\Hooks\DrawHeaderHook::class . '->render';
-
     }
 });

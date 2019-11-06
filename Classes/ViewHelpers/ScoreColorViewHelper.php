@@ -24,7 +24,7 @@ class ScoreColorViewHelper extends AbstractViewHelper
      *
      * @return string
      */
-    public function render():string
+    public function render(): string
     {
         return self::renderStatic(
             $this->arguments,
