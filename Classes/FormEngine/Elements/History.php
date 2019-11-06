@@ -113,29 +113,29 @@ class History extends AbstractNode
            'hash' => $hash,
            'period' => 'month',
            'lastRun' => $tstamp,
-           'reportUrl' => PageSpeedInsightsUtility::getReportUrl($pageId, $languageId),
+           'reportUrl' => PageSpeedInsightsUtility::getReportUrl($pageId, $languageId, $this->strategyToShow),
            'dataYear' => json_encode($dataYear),
            'dataMonth' => json_encode($dataMonth),
            'dataWeek' => json_encode($dataWeek),
-           'scorePerformanceData' => json_encode($this->getScoreData($pageId, 'performance_score')),
-           'scorePerformance' => PageSpeedInsightsUtility::getLastScore('performance_score', $pageId),
-           'scoreSeoData' => json_encode($this->getScoreData($pageId, 'seo_score')),
-           'scoreSeo' => PageSpeedInsightsUtility::getLastScore('seo_score', $pageId),
-           'scoreAccessibilityData' => json_encode($this->getScoreData($pageId, 'accessibility_score')),
-           'scoreAccessibility' => PageSpeedInsightsUtility::getLastScore('accessibility_score', $pageId),
-           'scoreBestPracticeData' => json_encode($this->getScoreData($pageId, 'bestpractices_score')),
-           'scoreBestPractice' => PageSpeedInsightsUtility::getLastScore('bestpractices_score', $pageId),
-           'scorePwaData' => json_encode($this->getScoreData($pageId, 'pwa_score')),
-           'scorePwa' => PageSpeedInsightsUtility::getLastScore('pwa_score', $pageId),
+           'scorePerformanceData' => json_encode($this->getScoreData($pageId, 'performance_score', $this->strategyToShow)),
+           'scorePerformance' => PageSpeedInsightsUtility::getLastScore('performance_score', $pageId, $this->strategyToShow),
+           'scoreSeoData' => json_encode($this->getScoreData($pageId, 'seo_score', $this->strategyToShow)),
+           'scoreSeo' => PageSpeedInsightsUtility::getLastScore('seo_score', $pageId, $this->strategyToShow),
+           'scoreAccessibilityData' => json_encode($this->getScoreData($pageId, 'accessibility_score', $this->strategyToShow)),
+           'scoreAccessibility' => PageSpeedInsightsUtility::getLastScore('accessibility_score', $pageId, $this->strategyToShow),
+           'scoreBestPracticeData' => json_encode($this->getScoreData($pageId, 'bestpractices_score', $this->strategyToShow)),
+           'scoreBestPractice' => PageSpeedInsightsUtility::getLastScore('bestpractices_score', $pageId, $this->strategyToShow),
+           'scorePwaData' => json_encode($this->getScoreData($pageId, 'pwa_score', $this->strategyToShow)),
+           'scorePwa' => PageSpeedInsightsUtility::getLastScore('pwa_score', $pageId, $this->strategyToShow),
         ]);
         $resultArray['html'] = $this->templateView->render();
 
         return $resultArray;
     }
 
-    protected function getScoreData($pageId, $field = 'performance_score'): array
+    protected function getScoreData($pageId, $field = 'performance_score', $strategy = ''): array
     {
-        $score = PageSpeedInsightsUtility::getLastScore($field, $pageId);
+        $score = PageSpeedInsightsUtility::getLastScore($field, $pageId, $strategy);
         return [
             'labels' => ['', ''],
             'datasets' => [
