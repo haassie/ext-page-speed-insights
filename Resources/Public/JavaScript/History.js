@@ -12,7 +12,7 @@ define(['jquery', 'TYPO3/CMS/PageSpeedInsights/Dist/Chart.min'], function ($, Ch
             if (_canvas.length > 0) {
                 var ctx = _canvas[0].getContext('2d');
 
-                var myChart = new Chart(ctx, {
+                window['pageSpeedInsightsHistoryConfig'] = {
                     type: 'line',
                     data: window[varName],
                     options: {
@@ -35,7 +35,9 @@ define(['jquery', 'TYPO3/CMS/PageSpeedInsights/Dist/Chart.min'], function ($, Ch
                             }]
                         }
                     }
-                });
+                };
+
+                window['pageSpeedInsightsHistory'] = new Chart(ctx, pageSpeedInsightsHistoryConfig);
             }
         });
     };

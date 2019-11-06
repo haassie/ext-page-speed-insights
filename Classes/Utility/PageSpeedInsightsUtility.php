@@ -291,7 +291,7 @@ class PageSpeedInsightsUtility
         return (int)$row['avg'];
     }
 
-    public static function getLastScore(string $field, int $pageId = 0): int
+    public static function getLastScore(string $field, int $pageId = 0, $strategy = ''): int
     {
         $lastRun = self::getLastRun($pageId);
 
@@ -301,6 +301,9 @@ class PageSpeedInsightsUtility
         ];
         if (!empty($pageId)) {
             $conditions[] = $queryBuilder->expr()->eq('page_id', $pageId);
+        }
+        if (!empty($strategy)) {
+            $conditions[] = $queryBuilder->expr()->eq('strategy', $queryBuilder->createNamedParameter($strategy));
         }
 
         $data = $queryBuilder
@@ -315,5 +318,22 @@ class PageSpeedInsightsUtility
         list($mode, $tstamp) = GeneralUtility::trimExplode('-', $lastRun);
 
         return (int)$data['avg'];
+    }
+
+    public static function getScoreRating($score): string
+    {
+        if ($score >= 90) {
+            return 'good';
+        }
+        if ($score >= 50) {
+            return 'ok';
+        }
+        return 'bad';
+    }
+
+    public static function getReportUrl($pageId, $languageId, $strategy = 'mobile'): string
+    {
+        $url = self::getUrlForPage($pageId, $languageId);
+        return 'https://developers.google.com/speed/pagespeed/insights/?url=' . urlencode($url) . '&tab=' . $strategy;
     }
 }

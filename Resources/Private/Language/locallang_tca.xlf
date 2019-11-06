@@ -33,6 +33,21 @@
             <trans-unit id="pages.tx_pagespeedinsights_results.bestpractices_score">
                 <source>Best practices</source>
             </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.warning.title">
+                <source>This page seems to be slow</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.warning.text">
+                <source>During the last check on PageSpeed Insights this page was indicated as slow. Studies showed that over 50% of the people will leave a page that takes longer than three seconds to load. As this is not giving a good experience to visitors, search engines will also lower your rankings. Try to make this page faster to get and keep more visitors!</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.checkReport">
+                <source>Check report on PageSpeed Insights</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.lastRun">
+                <source>Last check</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.checkedOn">
+                <source>Checked on: %s</source>
+            </trans-unit>
             <trans-unit id="pages.tx_pagespeedinsights_results.pwa_score">
                 <source>PWA</source>
             </trans-unit>

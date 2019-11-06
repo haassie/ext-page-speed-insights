@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 page_speed_insights_meta">Last data: {lastRun -> f:format.date(format: 'd-m-Y H:i')}</div>
+        <div class="col-sm-12 page_speed_insights_meta">{f:translate(key: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.lastRun')}: {lastRun -> f:format.date(format: 'd-m-Y H:i')} - <a href="{reportUrl}" target="_blank">{f:translate(key: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.checkReport')}</a></div>
     </div>
     <div class="row">
         <div class="col-sm-12">

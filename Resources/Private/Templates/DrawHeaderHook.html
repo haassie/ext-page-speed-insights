@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:pagespeed="http://typo3.org/ns/Haassie/PageSpeedInsights/ViewHelpers" data-namespace-typo3-fluid="true">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="pagespeed-insights-scoreItemBar">
+            <div class="pagespeed-insights-scoreItemBar--label">PageSpeed Insights</div>
+            <f:render section="item" arguments="{score: performanceScore, label: 'perf_score'}" />
+            <f:render section="item" arguments="{score: seoScore, label: 'seo_score'}" />
+            <f:render section="item" arguments="{score: accessibilityScore, label: 'accessibility_score'}" />
+            <f:render section="item" arguments="{score: bestPracticesScore, label: 'bestpractices_score'}" />
+            <f:render section="item" arguments="{score: pwaScore, label: 'pwa_score'}" />
+            <div class="pagespeed-insights-scoreItemBar--meta">{f:translate(key: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.checkedOn', arguments: '{0: strategy}')} - {f:translate(key: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.lastRun')}: {lastRun->f:format.date(format: 'd-m-Y H:i')} - <a href="{reportUrl}" target="_blank">{f:translate(key: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.checkReport')}</a></div>
+        </div>
+
+        <f:if condition="{disableWarnings} == false">
+            <f:if condition="{performanceScore} < 50">
+                <f:be.infobox title="{f:translate(key: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.warning.title')}" state="2"><f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.warning.text" /></f:be.infobox>
+            </f:if>
+        </f:if>
+    </div>
+</div>
+
+<f:section name="item">
+    <f:variable name="scoreRating" value="{pagespeed:scoreColor(score: score)}" />
+    <span class="pagespeed-insights-scoreItem pagespeed-insights-scoreItem--{scoreRating}"><f:translate key="LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tca.xlf:pages.tx_pagespeedinsights_results.{label}" />: {score}</span>
+</f:section>
+</html>

@@ -45,6 +45,14 @@ class History extends AbstractNode
         if (!empty($this->data['tableName']) && $this->data['tableName'] === 'pages' && !empty($this->data['vanillaUid'])) {
             $pageId = $this->data['vanillaUid'];
         }
+
+        $languageId = 0;
+        if (array_key_exists('0', (array)$this->data['databaseRow']['sys_language_uid']) &&
+            $this->data['databaseRow']['sys_language_uid'][0]
+        ) {
+            $languageId = (int)$this->data['databaseRow']['sys_language_uid'][0];
+        }
+
         $resultArray = $this->initializeResultArray();
 
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
@@ -95,6 +103,7 @@ class History extends AbstractNode
            'hash' => $hash,
            'period' => 'month',
            'lastRun' => $tstamp,
+           'reportUrl' => PageSpeedInsightsUtility::getReportUrl($pageId, $languageId),
            'dataYear' => json_encode($dataYear),
            'dataMonth' => json_encode($dataMonth),
            'dataWeek' => json_encode($dataWeek),
@@ -131,12 +140,17 @@ class History extends AbstractNode
 
     protected function getColor($score): string
     {
-        if ($score >= 90) {
-            return $this->colorGreen;
+        $scoreRating = PageSpeedInsightsUtility::getScoreRating($score);
+        switch ($scoreRating) {
+            case 'good':
+                return $this->colorGreen;
+                break;
+            case 'ok':
+                return $this->colorOrange;
+                break;
+            case 'bad':
+            default:
+            return $this->colorRed;
         }
-        if ($score >= 50) {
-            return $this->colorOrange;
-        }
-        return $this->colorRed;
     }
 }

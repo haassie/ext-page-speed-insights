@@ -1,0 +1,42 @@
+.pagespeed-insights-scoreItemBar {
+    margin: 0 0 20px 0;
+    border: 1px rgb(195, 195, 195) solid;
+    padding: 10px;
+    color: rgb(60, 64, 67);
+}
+.pagespeed-insights-scoreItem--good:before {
+    background-color: #0cce6a;
+}
+.pagespeed-insights-scoreItem--ok:before {
+    background-color: #ffa600;
+}
+.pagespeed-insights-scoreItem--bad:before {
+    background-color: #ff4f42;
+}
+.pagespeed-insights-scoreItem:before {
+    display: inline-block;
+    width: 15px;
+    height: 5px;
+    margin-right: 5px;
+    content: '';
+    position: relative;
+    top: -2px;
+    border-radius: 2px;
+}
+.pagespeed-insights-scoreItem {
+    margin-right: 20px;
+}
+.pagespeed-insights-scoreItemBar--label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.yoast-seo {
+    margin-bottom: 15px;
+}
+
+.pagespeed-insights-scoreItemBar--meta {
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 0.8em;
+}

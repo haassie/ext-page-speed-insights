@@ -7,11 +7,8 @@ define(['jquery', 'TYPO3/CMS/PageSpeedInsights/History'], function ($, History) 
 
     HistorySelector.initialize = function () {
         $(HistorySelector.selector).on('change', function() {
-            var _selector = '#history_' + $(this).data('hash');
-            console.log('data_' + $(this).val() + '_' + $(this).data('hash'));
-            $(_selector).data('var-name', 'data_' + $(this).val() + '_' + $(this).data('hash'));
-
-            History.initialize();
+            window['pageSpeedInsightsHistoryConfig'].data = window['data_' + $(this).val() + '_' + $(this).data('hash')];
+            window['pageSpeedInsightsHistory'].update();
         });
     };
 
