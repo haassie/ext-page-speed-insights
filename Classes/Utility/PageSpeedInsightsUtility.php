@@ -214,7 +214,7 @@ class PageSpeedInsightsUtility
         $dataBestPractices = [];
         $dataPwa = [];
 
-        for ($daysBefore = $daysInPastToStartFrom; $daysBefore > 0; $daysBefore-=$daysPerStep) {
+        for ($daysBefore = $daysInPastToStartFrom; $daysBefore >= 0; $daysBefore-=$daysPerStep) {
             $labels[] = strftime($labelFormat, strtotime('-' . $daysBefore . ' day'));
             $startPeriod = strtotime('-' . $daysBefore . ' day 0:00:00');
             $endPeriod =  strtotime('-' . ($daysBefore - $daysPerStep + 1) . ' day 23:59:59');
