@@ -25,6 +25,11 @@ class History extends AbstractNode
     protected $colorGreen = '#0cce6a';
 
     /**
+     * @var string
+     */
+    protected $strategyToShow;
+
+    /**
      * History constructor.
      * @param NodeFactory $nodeFactory
      * @param array $data
@@ -37,6 +42,8 @@ class History extends AbstractNode
         $this->templateView = $templateView ?? GeneralUtility::makeInstance(StandaloneView::class);
         $this->templateView->getRenderingContext()->getTemplatePaths()->fillDefaultsByPackageName('page_speed_insights');
         $this->templateView->setTemplate('History');
+
+        $this->strategyToShow = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?: 'mobile';
     }
 
     public function render()
@@ -62,6 +69,7 @@ class History extends AbstractNode
             356,
             7,
             $pageId,
+            $this->strategyToShow,
             $this->chartColors[0],
             $this->chartColors[1],
             $this->chartColors[2],
@@ -73,6 +81,7 @@ class History extends AbstractNode
             31,
             1,
             $pageId,
+            $this->strategyToShow,
             $this->chartColors[0],
             $this->chartColors[1],
             $this->chartColors[2],
@@ -84,6 +93,7 @@ class History extends AbstractNode
             7,
             1,
             $pageId,
+            $this->strategyToShow,
             $this->chartColors[0],
             $this->chartColors[1],
             $this->chartColors[2],

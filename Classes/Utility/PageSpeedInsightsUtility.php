@@ -129,6 +129,11 @@ class PageSpeedInsightsUtility
                     'bestpractices_score' => $result['best-practices']['score'],
                 ])
                 ->execute();
+            $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+            $logger->debug('PageSpeed Insights check of ' . $result['url'] . ' succeeded', $result);
+        } else {
+            $logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
+            $logger->error('PageSpeed Insights check of ' . $result['url'] . ' failed', $result);
         }
     }
 
@@ -162,7 +167,7 @@ class PageSpeedInsightsUtility
         return (string)$site->getRouter()->generateUri($pid, $additionalQueryParams);
     }
 
-    public static function getLastRun($pageId = 0): string
+    public static function getLastRun($pageId = 0, $strategy = ''): string
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
 
@@ -171,6 +176,9 @@ class PageSpeedInsightsUtility
         ];
         if ($pageId > 0) {
             $constraints[] = $queryBuilder->expr()->eq('page_id', $pageId);
+        }
+        if (!empty($strategy)) {
+            $constraints[] = $queryBuilder->expr()->eq('strategy', $queryBuilder->createNamedParameter($strategy));
         }
         $data = $queryBuilder
             ->select('reference')
@@ -188,6 +196,7 @@ class PageSpeedInsightsUtility
      * @param int $daysInPastToStartFrom
      * @param int $daysPerStep
      * @param int $pageId 0 = all pages
+     * @param string $strategy
      * @param string $chartColor1
      * @param string $chartColor2
      * @param string $chartColor3
@@ -196,7 +205,7 @@ class PageSpeedInsightsUtility
      * @param string $labelFormat
      * @return array
      */
-    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
+    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $strategy = '', $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
     {
         $labels = [];
         $dataPerformance = [];
@@ -210,11 +219,11 @@ class PageSpeedInsightsUtility
             $startPeriod = strtotime('-' . $daysBefore . ' day 0:00:00');
             $endPeriod =  strtotime('-' . ($daysBefore - $daysPerStep + 1) . ' day 23:59:59');
 
-            $dataPerformance[] = self::getAverageScoreInPeriod('performance_score', $startPeriod, $endPeriod, $pageId);
-            $dataSeo[] = self::getAverageScoreInPeriod('seo_score', $startPeriod, $endPeriod, $pageId);
-            $dataAccessibility[] = self::getAverageScoreInPeriod('accessibility_score', $startPeriod, $endPeriod, $pageId);
-            $dataBestPractices[] = self::getAverageScoreInPeriod('bestpractices_score', $startPeriod, $endPeriod, $pageId);
-            $dataPwa[] = self::getAverageScoreInPeriod('pwa_score', $startPeriod, $endPeriod, $pageId);
+            $dataPerformance[] = self::getAverageScoreInPeriod('performance_score', $startPeriod, $endPeriod, $pageId, $strategy);
+            $dataSeo[] = self::getAverageScoreInPeriod('seo_score', $startPeriod, $endPeriod, $pageId, $strategy);
+            $dataAccessibility[] = self::getAverageScoreInPeriod('accessibility_score', $startPeriod, $endPeriod, $pageId, $strategy);
+            $dataBestPractices[] = self::getAverageScoreInPeriod('bestpractices_score', $startPeriod, $endPeriod, $pageId, $strategy);
+            $dataPwa[] = self::getAverageScoreInPeriod('pwa_score', $startPeriod, $endPeriod, $pageId, $strategy);
         }
 
         return [
@@ -264,9 +273,10 @@ class PageSpeedInsightsUtility
      * @param int $start
      * @param int $end
      * @param int $pageId
+     * @param string $strategy
      * @return int
      */
-    protected static function getAverageScoreInPeriod(string $field, int $start, int $end, int $pageId = 0): int
+    protected static function getAverageScoreInPeriod(string $field, int $start, int $end, int $pageId = 0, $strategy = ''): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
 
@@ -277,6 +287,9 @@ class PageSpeedInsightsUtility
 
         if (!empty($pageId)) {
             $conditions[] = $queryBuilder->expr()->eq('page_id', $pageId);
+        }
+        if (!empty($strategy)) {
+            $conditions[] = $queryBuilder->expr()->eq('strategy', $queryBuilder->createNamedParameter($strategy));
         }
 
         $row = $queryBuilder
@@ -293,7 +306,7 @@ class PageSpeedInsightsUtility
 
     public static function getLastScore(string $field, int $pageId = 0, $strategy = ''): int
     {
-        $lastRun = self::getLastRun($pageId);
+        $lastRun = self::getLastRun($pageId, $strategy);
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
         $conditions = [

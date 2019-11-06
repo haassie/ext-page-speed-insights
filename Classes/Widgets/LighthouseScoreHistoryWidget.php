@@ -23,6 +23,11 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
      */
     protected $height = 4;
 
+    /**
+     * @var string
+     */
+    protected $strategyToShow = 'mobile';
+
     public function __construct()
     {
         AbstractLineChartWidget::__construct();
@@ -42,6 +47,7 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
             31,
             1,
             0,
+            $this->strategyToShow,
             $this->chartColors[0],
             $this->chartColors[1],
             $this->chartColors[2],

@@ -53,7 +53,7 @@ class DrawHeaderHook
             return '';
         }
 
-        [$mode, $lastRun] = GeneralUtility::trimExplode('-', PageSpeedInsightsUtility::getLastRun($pageId));
+        [$mode, $lastRun] = GeneralUtility::trimExplode('-', PageSpeedInsightsUtility::getLastRun($pageId, $this->strategyToShow));
         if (empty($lastRun)) {
             return '';
         }
