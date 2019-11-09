@@ -6,3 +6,6 @@
 /.gitignore export-ignore
 /.gitlab-ci.yml export-ignore
 /composer.lock export-ignore
+/Documentation-GENERATED-temp/ export-ignore
+/.php_cs.dist
+/.github/ export-ignore
