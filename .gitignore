@@ -14,3 +14,6 @@
 *.css.map
 **/*temp_*
 **/node_modules
+
+# ignore generated documentation
+*GENERATED*
