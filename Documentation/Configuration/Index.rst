@@ -9,53 +9,42 @@ Configuration
 
 Target group: **Developers, Integrators**
 
-How is the extension configured? Aim to provide simple instructions detailing 
-how the extension is configured. Always assume that the user has no prior experience 
-of using your extension.
-
-Try and provide a typical use case for your extension and detail each of the 
-steps required to get the extension running.
+There is not that much of configuration needed to make this extension work. The only mandatory configuration is to
+schedule the execution of the analyzer. Besides that, there are some small configuration options.
 
 
-Typical Example
-===============
+Scheduler task
+==============
+As said, it is important to make sure your pages are analyzed frequently. The easiest way to do is to add a scheduler
+task in the backend of TYPO3.
 
-- Do we need to include a static template?
-- For example add a code snippet with comments
+- Create a task task of the class :guilabel:`Execute console commands`
+- Choose recurring as type and set a proper frequency
+- As the schedulable command you choose :guilabel:`pagespeedinsights:run:`
+- After saving this task you will get the option to add your Google API key. You can find more information how to get an API key on the `Developer website of Google <https://developers.google.com/speed/docs/insights/v5/get-started#APIKey>`__.
 
-Minimal example of TypoScript:
+.. tip::
 
-- Code-blocks have support for syntax highlighting
-- Use any supported language
+    We advise you to do the checks at least once a day. Sometimes the API have problems connection to websites and when you only check once a day, you wont have data of that day.
 
-.. code-block:: typoscript
+Permissions
+===========
+As the fields in the page properties are excludable fields, you need to give access to those fields for your users. The fields you need are: :guilabel:`tx_pagespeedinsights_check` and :guilabel:`tx_pagespeedinsights_results`.
 
-   plugin.tx_myextension.settings {
-      # configure basic email settings
-      email {
-         subject = Some subject
-         from = someemail@domain.de
-      }
-   }
+Configuration options
+=====================
 
-.. _configuration-typoscript:
+There are some small configuration options you can set.
 
-TypoScript Reference
-====================
+Disable warnings
+----------------
+The extension will give an editor warnings in the page module when a page is to slow. If you want to disable those
+additional warnings, you can set :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['disableWarnings']` to true.
 
-Possible subsections: Reference of TypoScript options.
-The construct below show the recommended structure for
-TypoScript properties listing and description.
+Disable info in page module
+---------------------------
+If you don't want to get feedback in the page module, but only in the page properties, you can set the option :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['disableInfo']` to true.
 
-When detailing data types or standard TypoScript
-features, don't hesitate to cross-link to the TypoScript
-Reference as shown below.
-
-
-See `Hyperlinks & Cross-Referencing <https://docs.typo3.org/typo3cms/HowToDocument/WritingReST/Hyperlinks.html>`
-for information about how to use cross-references.
-
-See the :file:`Settings.cgf` file for the declaration of cross-linking keys.
-You can add more keys besides tsref.
-
-
+Strategy to show
+----------------
+By default, your results are shown for mobile devices. If you want to view the results of desktop, just set :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow']` to :php:`desktop`.

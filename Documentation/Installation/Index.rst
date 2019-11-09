@@ -10,8 +10,8 @@ Installation
 
 Target group: **Administrators**
 
-- How is the extension installed?
-- Are there any dependencies that need to be resolved?
+Installation is easy. You can use the TYPO3 Extension Repository or you can install the extension by using composer.
+See :ref:`t3install:extension-installation` for a manual how to install an extension.
 
-You can also refer to general TYPO3 documentation, for example the
-:ref:`t3install:start`.
+- The extension key in the TYPO3 Extension Repository: :code:`page_speed_insights`
+- Package-name on Packagist.org: :code:`haassie/page-speed-insights`

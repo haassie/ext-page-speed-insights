@@ -8,52 +8,40 @@ Introduction
 ============
 
 
-.. tip::
+The performance of your website is important for several reasons. The most important one is that if a page is to slow
+you will lose visitors. Studies showed that over 50% of the people will leave a page that takes longer than three
+seconds to load.
 
-   New to reStructuredText and Sphinx?
-
-   Get an introduction:
-   https://docs.typo3.org/m/typo3/docs-how-to-document/master/en-us/WritingReST/Index.html
-
-   Use this cheat sheet as reference:
-   https://docs.typo3.org/m/typo3/docs-how-to-document/master/en-us/WritingReST/CheatSheet.html
+As this is important for users, it is important for search engines as well. Search engines want to give the user the
+best results possible. If a search engines have to choose between two results that both are interesting for a user, the
+fastest one will definitely have a higher change to rank over the other result.
 
 .. _what-it-does:
 
 What does it do?
 ================
 
-The aim of this chapter is to provide a general overview of your extension.
-
-* What does it do?
-* What problems does it solve?
-* Who is the target audience?
-
-This chapter should provide information that will help inform 
-potential users and assist them in deciding if they should 
-install and use this extension.
-
-.. important::
-
-   Don't forget to repeat your extension's version number in the
-   :file:`Settings.cfg` file, in the :code:`release` property. It will be
-   automatically picked up on the cover page by the :code:`|release|`
-   substitution.
-
+This extension will give you the possibility to check your TYPO3 pages with PageSpeed Insights. The performance of your
+page is checked with Lighthouse and will give you an indication of the performance of your page. Besides performance
+you will also get your Lighthouse scores for SEO, Accessibility, Best practices and PWA.
 
 .. _screenshots:
 
 Screenshots
 ===========
 
-This chapter should help people understand how the extension works. Remove it
-if it is not relevant.
-
-.. figure:: ../Images/IntroductionPackage.png
+.. figure:: ../Images/ScreenshotPageModule.png
    :class: with-shadow
-   :alt: Introduction Package
-   :width: 300px
+   :alt: Scores shown in page module
+   :width: 500px
 
-   Introduction Package just after installation (caption of the image)
+   PageSpeed Insights results as shown in the page module
 
-How the Frontend of the Introduction Package looks like just after installation (legend of the image)
+.. figure:: ../Images/ScreenshotPageProperties.png
+   :class: with-shadow
+   :alt: Scores and history shown in page properties
+   :width: 500px
+
+   PageSpeed Insights results and history are shown in the page properties
+
+

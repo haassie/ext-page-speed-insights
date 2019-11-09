@@ -59,8 +59,7 @@ PWA and Best practises are checked.
 
 
    Introduction/Index
-   Editor/Index
    Installation/Index
    Configuration/Index
-   KnownProblems/Index
+   Editor/Index
 
