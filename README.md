@@ -1,7 +1,7 @@
 Page Speed Insights for TYPO3
 =============================
 
-[![Pipeline](https://gitlab.com/haassie/ext-page-speed-insights/badges/master/pipeline.svg)](https://gitlab.com/haassie/ext-page-speed-insights/pipelines)
+[![Pipeline](https://github.com/haassie/ext-page-speed-insights/workflows/CI/badge.svg)](https://github.com/haassie/ext-page-speed-insights/actions)
 
 
 The performance of your website is important for several reasons. The most important one is that if a page is to slow
