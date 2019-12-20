@@ -1,14 +1,14 @@
 Dashboard:
   Widgets:
-    - { identifier: 'lighthousePerformanceScore',
-        className: Haassie\PageSpeedInsights\Widgets\LighthousePerformanceScoreWidget }
-    - { identifier: 'lighthouseSeoScore',
-        className: Haassie\PageSpeedInsights\Widgets\LighthouseSeoScoreWidget }
-    - { identifier: 'lighthouseBestPracticesScore',
-        className: Haassie\PageSpeedInsights\Widgets\LighthouseBestPracticesScoreWidget }
-    - { identifier: 'lighthousePwaScore',
-        className: Haassie\PageSpeedInsights\Widgets\LighthousePwaScoreWidget }
-    - { identifier: 'lighthouseAccessibilityScore',
-        className: Haassie\PageSpeedInsights\Widgets\LighthouseAccessibilityScoreWidget }
-    - { identifier: 'lighthouseScoreHistoryWidget',
-        className: Haassie\PageSpeedInsights\Widgets\LighthouseScoreHistoryWidget }
+    - identifier: 'lighthousePerformanceScore'
+      className: Haassie\PageSpeedInsights\Widgets\LighthousePerformanceScoreWidget
+    - identifier: 'lighthouseSeoScore'
+      className: Haassie\PageSpeedInsights\Widgets\LighthouseSeoScoreWidget
+    - identifier: 'lighthouseBestPracticesScore'
+      className: Haassie\PageSpeedInsights\Widgets\LighthouseBestPracticesScoreWidget
+    - identifier: 'lighthousePwaScore'
+      className: Haassie\PageSpeedInsights\Widgets\LighthousePwaScoreWidget
+    - identifier: 'lighthouseAccessibilityScore'
+      className: Haassie\PageSpeedInsights\Widgets\LighthouseAccessibilityScoreWidget
+    - identifier: 'lighthouseScoreHistoryWidget'
+      className: Haassie\PageSpeedInsights\Widgets\LighthouseScoreHistoryWidget
