@@ -37,9 +37,11 @@ abstract class AbstractChartWidget extends AbstractWidget implements AdditionalC
      * Method to set all data for the chart in $this->eventData
      */
     abstract protected function prepareChartData(): void;
+    abstract protected function prepareData(): void;
 
     public function getEventData(): array
     {
+        $this->prepareData();
         $this->prepareChartData();
         $this->eventData['graphConfig'] = [
             'type' => $this->chartType,

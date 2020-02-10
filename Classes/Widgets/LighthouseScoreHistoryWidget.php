@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Haassie\PageSpeedInsights\Widgets;
 
-use FriendsOfTYPO3\Dashboard\Widgets\AbstractLineChartWidget;
 use Haassie\PageSpeedInsights\Utility\PageSpeedInsightsUtility;
 
 class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
@@ -28,21 +27,8 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
      */
     protected $strategyToShow = 'mobile';
 
-    public function __construct()
-    {
-        AbstractLineChartWidget::__construct();
-
-        $this->chartOptions['legend']['display'] = true;
-        $this->chartOptions['legend']['labels']['boxWidth'] = 20;
-    }
-    public function prepareData(): void
-    {
-    }
-
     protected function prepareChartData(): void
     {
-        parent::prepareChartData();
-
         $this->chartData = PageSpeedInsightsUtility::getChartData(
             31,
             1,
@@ -54,5 +40,11 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
             $this->chartColors[3],
             $this->chartColors[4]
         );
+    }
+
+    protected function prepareData(): void
+    {
+        $this->chartOptions['legend']['display'] = true;
+        $this->chartOptions['legend']['labels']['boxWidth'] = 20;
     }
 }

@@ -36,7 +36,6 @@ abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWid
 
     protected function prepareChartData(): void
     {
-        $this->prepareData();
         $this->chartData = $this->getChartData();
     }
 
