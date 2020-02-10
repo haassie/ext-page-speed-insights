@@ -7,6 +7,7 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 class PageSpeedInsightsUtility
 {
@@ -171,9 +172,7 @@ class PageSpeedInsightsUtility
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_pagespeedinsights_results');
 
-        $constraints = [
-            $queryBuilder->expr()->eq('t3ver_id', 0)
-        ];
+        $constraints = [];
         if ($pageId > 0) {
             $constraints[] = $queryBuilder->expr()->eq('page_id', $pageId);
         }

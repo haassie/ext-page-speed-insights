@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Haassie\PageSpeedInsights\Widgets;
 
-use FriendsOfTYPO3\Dashboard\Widgets\AbstractDoughnutChartWidget;
 use Haassie\PageSpeedInsights\Utility\PageSpeedInsightsUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class SysLogErrorsWidget
@@ -36,8 +36,7 @@ abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWid
 
     protected function prepareChartData(): void
     {
-        parent::prepareChartData();
-
+        $this->prepareData();
         $this->chartData = $this->getChartData();
     }
 
@@ -56,8 +55,7 @@ abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWid
      */
     public function renderWidgetContent(): string
     {
-        $this->prepareData();
-        $this->initializeView();
+//        $this->initializeView();
 
         $this->view->assign('title', $this->title);
         $this->view->assign('value', $this->score);
