@@ -27,55 +27,5 @@ call_user_func(function () {
 }'
         );
 
-        $widgetGroupRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-            \TYPO3\CMS\Dashboard\Domain\Repository\WidgetGroupRepository::class
-        );
-
-        $generalWidgetGroup = new \TYPO3\CMS\Dashboard\Domain\Model\WidgetGroup(
-            'widgetGroup-lighthouse',
-            'Lighthouse'
-        );
-        $widgetGroupRepository->registerWidgetGroup($generalWidgetGroup);
-
-        $widgetRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
-            \TYPO3\CMS\Dashboard\Domain\Repository\WidgetRepository::class
-        );
-
-        $widgetRepository->registerWidget(
-            'widget-lighthouse-performance',
-            \Haassie\PageSpeedInsights\Widgets\LighthousePerformanceScoreWidget::class,
-            ['widgetGroup-lighthouse']
-        );
-
-        $widgetRepository->registerWidget(
-            'widget-lighthouse-accessibility',
-            \Haassie\PageSpeedInsights\Widgets\LighthouseAccessibilityScoreWidget::class,
-            ['widgetGroup-lighthouse']
-        );
-
-        $widgetRepository->registerWidget(
-            'widget-lighthouse-pwa',
-            \Haassie\PageSpeedInsights\Widgets\LighthousePwaScoreWidget::class,
-            ['widgetGroup-lighthouse']
-        );
-
-        $widgetRepository->registerWidget(
-            'widget-lighthouse-bestpractices',
-            \Haassie\PageSpeedInsights\Widgets\LighthouseBestPracticesScoreWidget::class,
-            ['widgetGroup-lighthouse']
-        );
-
-        $widgetRepository->registerWidget(
-            'widget-lighthouse-seo',
-            \Haassie\PageSpeedInsights\Widgets\LighthouseSeoScoreWidget::class,
-            ['widgetGroup-lighthouse']
-        );
-
-        $widgetRepository->registerWidget(
-            'widget-lighthouse-history',
-            \Haassie\PageSpeedInsights\Widgets\LighthouseScoreHistoryWidget::class,
-            ['widgetGroup-lighthouse']
-        );
-
     }
 });

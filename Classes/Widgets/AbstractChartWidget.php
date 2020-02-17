@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Haassie\PageSpeedInsights\Widgets;
 
-use TYPO3\CMS\Dashboard\Domain\Model\AbstractWidget;
-use TYPO3\CMS\Dashboard\Domain\Model\Interfaces\AdditionalCssInterface;
-use TYPO3\CMS\Dashboard\Domain\Model\Interfaces\EventDataInterface;
-use TYPO3\CMS\Dashboard\Domain\Model\Interfaces\RequireJsModuleInterface;
+use TYPO3\CMS\Dashboard\Widgets\AbstractWidget;
+use TYPO3\CMS\Dashboard\Widgets\Interfaces\AdditionalCssInterface;
+use TYPO3\CMS\Dashboard\Widgets\Interfaces\EventDataInterface;
+use TYPO3\CMS\Dashboard\Widgets\Interfaces\RequireJsModuleInterface;
 
 /**
  * The AbstractChartWidget class is the basic widget class for all chart widgets
