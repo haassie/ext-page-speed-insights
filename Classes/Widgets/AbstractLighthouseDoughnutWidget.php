@@ -6,7 +6,6 @@ namespace Haassie\PageSpeedInsights\Widgets;
 use Haassie\PageSpeedInsights\Utility\PageSpeedInsightsUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Dashboard\Widgets\AbstractDoughnutChartWidget;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class SysLogErrorsWidget
