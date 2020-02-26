@@ -18,7 +18,8 @@ abstract class AbstractLineChartWidget extends AbstractChartWidget
     protected $chartOptions = [
         'maintainAspectRatio' => false,
         'legend' => [
-            'display' => false
+            'display' => true,
+            'position' => 'bottom'
         ],
         'scales' => [
             'yAxes' => [
