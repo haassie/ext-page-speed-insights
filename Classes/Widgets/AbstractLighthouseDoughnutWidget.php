@@ -5,6 +5,7 @@ namespace Haassie\PageSpeedInsights\Widgets;
 
 use Haassie\PageSpeedInsights\Utility\PageSpeedInsightsUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Dashboard\Widgets\AbstractDoughnutChartWidget;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
@@ -12,22 +13,21 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWidget
 {
-    /**
-     * @var string
-     */
-    protected $title = '';
-
-    protected $height = 4;
-
     protected $score = 0;
-
     protected $lastCheck = 0;
-
     protected $fieldToUse = '';
-
     protected $templateName = 'LighthouseDoughnutWidget';
 
-    protected $extensionKey = 'page_speed_insights';
+    /**
+     * @inheritDoc
+     */
+    protected $chartOptions = [
+        'maintainAspectRatio' => false,
+        'legend' => [
+            'display' => false
+        ],
+        'cutoutPercentage' => 60
+    ];
 
     /**
      * @var string
@@ -36,6 +36,7 @@ abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWid
 
     protected function prepareChartData(): void
     {
+        $this->prepareData();
         $this->chartData = $this->getChartData();
     }
 
@@ -54,9 +55,7 @@ abstract class AbstractLighthouseDoughnutWidget extends AbstractDoughnutChartWid
      */
     public function renderWidgetContent(): string
     {
-//        $this->initializeView();
-
-        $this->view->assign('title', $this->title);
+        $this->view->assign('title', $this->getTitle());
         $this->view->assign('value', $this->score);
         $this->view->assign('strategy', $this->strategyToShow);
         $this->view->assign('lastCheck', $this->lastCheck);

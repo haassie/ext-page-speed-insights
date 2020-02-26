@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Haassie\PageSpeedInsights\Widgets;
 
+use TYPO3\CMS\Dashboard\Widgets\AbstractChartWidget;
+
 /**
  * The AbstractLineChartWidget class is the basic widget class for line charts.
  * Is it possible to extends this class for own widgets.
@@ -11,8 +13,6 @@ namespace Haassie\PageSpeedInsights\Widgets;
  */
 abstract class AbstractLineChartWidget extends AbstractChartWidget
 {
-    protected $iconIdentifier = 'dashboard-chartline';
-
     protected $chartType = 'line';
 
     protected $chartOptions = [
@@ -37,6 +37,4 @@ abstract class AbstractLineChartWidget extends AbstractChartWidget
             ]
         ]
     ];
-
-    protected $templateName = 'LineChartWidget';
 }

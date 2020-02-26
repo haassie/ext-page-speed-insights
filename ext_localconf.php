@@ -20,9 +20,9 @@ call_user_func(function () {
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
             'module.tx_dashboard {
     view {
-        templateRootPaths.5 = EXT:page_speed_insights/Resources/Private/Templates/
-        partialRootPaths.5 = EXT:page_speed_insights/Resources/Private/Partials/
-        layoutRootPaths.5 = EXT:page_speed_insights/Resources/Private/Layouts/
+        templateRootPaths.100 = EXT:page_speed_insights/Resources/Private/Templates/
+        partialRootPaths.100 = EXT:page_speed_insights/Resources/Private/Partials/
+        layoutRootPaths.100 = EXT:page_speed_insights/Resources/Private/Layouts/
     }
 }'
         );

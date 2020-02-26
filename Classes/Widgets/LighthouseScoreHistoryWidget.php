@@ -10,7 +10,8 @@ class LighthouseScoreHistoryWidget extends AbstractLineChartWidget
     /**
      * @var string
      */
-    protected $title = 'Lighthouse History';
+    protected $title = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.history.title';
+    protected $description = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.history.description';
 
     /**
      * @var int

@@ -8,6 +8,7 @@ namespace Haassie\PageSpeedInsights\Widgets;
  */
 class LighthouseSeoScoreWidget extends AbstractLighthouseDoughnutWidget
 {
-    protected $title = 'SEO score';
+    protected $title = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.history.title';
+    protected $description = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.history.description';
     protected $fieldToUse = 'seo_score';
 }

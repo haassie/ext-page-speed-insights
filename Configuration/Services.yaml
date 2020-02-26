@@ -1,0 +1,47 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Haassie\PageSpeedInsights\Widgets\LighthouseAccessibilityScoreWidget:
+    arguments: ['lighthouseAccessibility']
+    tags:
+      - name: dashboard.widget
+        identifier: lighthouseAccessibility
+        widgetGroups: 'psi'
+
+  Haassie\PageSpeedInsights\Widgets\LighthouseBestPracticesScoreWidget:
+    arguments: ['lighthouseBestPractices']
+    tags:
+      - name: dashboard.widget
+        identifier: lighthouseBestPractices
+        widgetGroups: 'psi'
+
+  Haassie\PageSpeedInsights\Widgets\LighthousePerformanceScoreWidget:
+    arguments: ['lighthousePerformance']
+    tags:
+      - name: dashboard.widget
+        identifier: lighthousePerformance
+        widgetGroups: 'psi'
+
+  Haassie\PageSpeedInsights\Widgets\LighthousePwaScoreWidget:
+    arguments: ['lighthousePwa']
+    tags:
+      - name: dashboard.widget
+        identifier: lighthousePwa
+        widgetGroups: 'psi'
+
+  Haassie\PageSpeedInsights\Widgets\LighthouseSeoScoreWidget:
+    arguments: ['lighthouseSeo']
+    tags:
+      - name: dashboard.widget
+        identifier: lighthouseSeo
+        widgetGroups: 'psi'
+
+  Haassie\PageSpeedInsights\Widgets\LighthouseScoreHistoryWidget:
+    arguments: ['lighthouseScoreHistory']
+    tags:
+      - name: dashboard.widget
+        identifier: lighthouseScoreHistory
+        widgetGroups: 'psi'

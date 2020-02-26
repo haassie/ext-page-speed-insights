@@ -8,6 +8,7 @@ namespace Haassie\PageSpeedInsights\Widgets;
  */
 class LighthouseBestPracticesScoreWidget extends AbstractLighthouseDoughnutWidget
 {
-    protected $title = 'Best Practices score';
+    protected $title = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.bestPractices.title';
+    protected $description = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.bestPractices.description';
     protected $fieldToUse = 'bestpractices_score';
 }

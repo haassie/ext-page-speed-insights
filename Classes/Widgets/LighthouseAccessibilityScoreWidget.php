@@ -8,6 +8,7 @@ namespace Haassie\PageSpeedInsights\Widgets;
  */
 class LighthouseAccessibilityScoreWidget extends AbstractLighthouseDoughnutWidget
 {
-    protected $title = 'Accessibility score';
+    protected $title = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.accessibility.title';
+    protected $description = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.accessibility.description';
     protected $fieldToUse = 'accessibility_score';
 }
