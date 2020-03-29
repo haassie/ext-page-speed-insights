@@ -21,6 +21,11 @@
     "ext-curl": "*",
     "ext-json": "*"
   },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "page_speed_insights"
+    }
+  },
   "autoload": {
     "psr-4": {
       "Haassie\\PageSpeedInsights\\": "Classes/"
