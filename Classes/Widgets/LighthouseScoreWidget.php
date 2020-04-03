@@ -1,12 +1,11 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 namespace Haassie\PageSpeedInsights\Widgets;
 
 use Haassie\PageSpeedInsights\Widgets\Provider\LighthouseScoreProviderInterface;
 use TYPO3\CMS\Dashboard\Utility\ButtonUtility;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\AdditionalCssInterface;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\ButtonProviderInterface;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\ChartDataProviderInterface;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\EventDataInterface;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\RequireJsModuleInterface;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\WidgetConfigurationInterface;

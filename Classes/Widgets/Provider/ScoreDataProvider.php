@@ -27,7 +27,6 @@ class ScoreDataProvider implements LighthouseScoreProviderInterface
      */
     private $strategy;
 
-
     public function __construct(string $field = 'performance_score', string $strategy = 'mobile')
     {
         $this->field = $field;
@@ -49,7 +48,6 @@ class ScoreDataProvider implements LighthouseScoreProviderInterface
 
     public function getChartData(): array
     {
-
         $chartColors = WidgetApi::getDefaultChartColors();
         return [
             'labels' => [
