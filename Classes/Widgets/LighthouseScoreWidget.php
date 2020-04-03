@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace Haassie\PageSpeedInsights\Widgets;
 
+use Haassie\PageSpeedInsights\Widgets\Provider\LighthouseScoreProviderInterface;
 use TYPO3\CMS\Dashboard\Utility\ButtonUtility;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\AdditionalCssInterface;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\ButtonProviderInterface;
@@ -12,7 +13,7 @@ use TYPO3\CMS\Dashboard\Widgets\Interfaces\WidgetConfigurationInterface;
 use TYPO3\CMS\Dashboard\Widgets\Interfaces\WidgetInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
-class LighthouseScoreHistoryWidget implements WidgetInterface, EventDataInterface, AdditionalCssInterface, RequireJsModuleInterface
+class LighthouseScoreWidget implements WidgetInterface, EventDataInterface, AdditionalCssInterface, RequireJsModuleInterface
 {
     /**
      * @var WidgetConfigurationInterface
@@ -20,7 +21,7 @@ class LighthouseScoreHistoryWidget implements WidgetInterface, EventDataInterfac
     private $configuration;
 
     /**
-     * @var ChartDataProviderInterface
+     * @var LighthouseScoreProviderInterface
      */
     private $dataProvider;
 
@@ -41,7 +42,7 @@ class LighthouseScoreHistoryWidget implements WidgetInterface, EventDataInterfac
 
     public function __construct(
         WidgetConfigurationInterface $configuration,
-        ChartDataProviderInterface $dataProvider,
+        LighthouseScoreProviderInterface $dataProvider,
         StandaloneView $view,
         $buttonProvider = null,
         array $options = []
@@ -55,11 +56,13 @@ class LighthouseScoreHistoryWidget implements WidgetInterface, EventDataInterfac
 
     public function renderWidgetContent(): string
     {
-        $this->view->setTemplate('Widget/ChartWidget');
+        $this->view->setTemplate('Widget/LighthouseScoreWidget');
         $this->view->assignMultiple([
             'button' => ButtonUtility::generateButtonConfig($this->buttonProvider),
             'options' => $this->options,
             'configuration' => $this->configuration,
+            'score' => $this->dataProvider->getScore(),
+            'metadata' => $this->dataProvider->getMetaData()
         ]);
         return $this->view->render();
     }
@@ -68,29 +71,13 @@ class LighthouseScoreHistoryWidget implements WidgetInterface, EventDataInterfac
     {
         return [
             'graphConfig' => [
-                'type' => 'line',
+                'type' => 'doughnut',
                 'options' => [
                     'maintainAspectRatio' => false,
                     'legend' => [
-                        'display' => true,
-                        'position' => 'bottom'
+                        'display' => false
                     ],
-                    'scales' => [
-                        'yAxes' => [
-                            [
-                                'ticks' => [
-                                    'beginAtZero' => true
-                                ]
-                            ]
-                        ],
-                        'xAxes' => [
-                            [
-                                'ticks' => [
-                                    'maxTicksLimit' => 15
-                                ]
-                            ]
-                        ]
-                    ]
+                    'cutoutPercentage' => 60
                 ],
                 'data' => $this->dataProvider->getChartData(),
             ],

@@ -7,10 +7,11 @@
         <canvas></canvas>
     </div>
     <div class="widget-doughnut--value">
-        {value}
+        {score}
     </div>
     <div class="widget-doughnut--meta">
-        Last check: <f:format.date format="d-m-Y H:i">{lastCheck}</f:format.date> on {strategy}
+        <div>Last check: <f:format.date format="d-m-Y H:i">{metadata.lastRun}</f:format.date></div>
+        <div>Strategy: {metadata.strategy}</div>
     </div>
 </f:section>
 
