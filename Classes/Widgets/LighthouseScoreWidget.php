@@ -3,13 +3,12 @@ declare(strict_types=1);
 namespace Haassie\PageSpeedInsights\Widgets;
 
 use Haassie\PageSpeedInsights\Widgets\Provider\LighthouseScoreProviderInterface;
-use TYPO3\CMS\Dashboard\Utility\ButtonUtility;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\AdditionalCssInterface;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\ButtonProviderInterface;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\EventDataInterface;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\RequireJsModuleInterface;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\WidgetConfigurationInterface;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\WidgetInterface;
+use TYPO3\CMS\Dashboard\Widgets\AdditionalCssInterface;
+use TYPO3\CMS\Dashboard\Widgets\ButtonProviderInterface;
+use TYPO3\CMS\Dashboard\Widgets\EventDataInterface;
+use TYPO3\CMS\Dashboard\Widgets\RequireJsModuleInterface;
+use TYPO3\CMS\Dashboard\Widgets\WidgetConfigurationInterface;
+use TYPO3\CMS\Dashboard\Widgets\WidgetInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class LighthouseScoreWidget implements WidgetInterface, EventDataInterface, AdditionalCssInterface, RequireJsModuleInterface
@@ -57,7 +56,7 @@ class LighthouseScoreWidget implements WidgetInterface, EventDataInterface, Addi
     {
         $this->view->setTemplate('Widget/LighthouseScoreWidget');
         $this->view->assignMultiple([
-            'button' => ButtonUtility::generateButtonConfig($this->buttonProvider),
+            'button' => $this->buttonProvider,
             'options' => $this->options,
             'configuration' => $this->configuration,
             'score' => $this->dataProvider->getScore(),

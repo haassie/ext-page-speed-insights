@@ -5,7 +5,7 @@ namespace Haassie\PageSpeedInsights\Widgets\Provider;
 
 use Haassie\PageSpeedInsights\Utility\PageSpeedInsightsUtility;
 use TYPO3\CMS\Dashboard\WidgetApi;
-use TYPO3\CMS\Dashboard\Widgets\Interfaces\ChartDataProviderInterface;
+use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
 class ScoreHistoryDataProvider implements ChartDataProviderInterface
 {
