@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">>
+	<file t3:id="1582724942" source-language="en" datatype="plaintext" original="messages" date="2018-11-27T22:26:21Z" product-name="page_speed_insights">
+		<header/>
+		<body>
+			<trans-unit id="dashboardPresets.psi.title" xml:space="preserve">
+				<source>PageSpeed Insights</source>
+			</trans-unit>
+			<trans-unit id="dashboardPresets.psi.description" xml:space="preserve">
+				<source>This preset will give you a dashboard with widgets containing your Lighthouse scores from your PageSpeed Insights checks.</source>
+			</trans-unit>
+
+			<trans-unit id="widgetGroups.psi" xml:space="preserve">
+				<source>PageSpeed Insights</source>
+			</trans-unit>
+
+			<trans-unit id="widgets.accessibility.title" xml:space="preserve">
+				<source>Accessibility score</source>
+			</trans-unit>
+			<trans-unit id="widgets.accessibility.description" xml:space="preserve">
+				<source>Will show you the Lighthouse score on accessibility from the last PageSpeed Insights check.</source>
+			</trans-unit>
+
+			<trans-unit id="widgets.performance.title" xml:space="preserve">
+				<source>Performance score</source>
+			</trans-unit>
+			<trans-unit id="widgets.performance.description" xml:space="preserve">
+				<source>Will show you the Lighthouse score on performance from the last PageSpeed Insights check.</source>
+			</trans-unit>
+
+			<trans-unit id="widgets.bestPractices.title" xml:space="preserve">
+				<source>Best Practices score</source>
+			</trans-unit>
+			<trans-unit id="widgets.bestPractices.description" xml:space="preserve">
+				<source>Will show you the Lighthouse score on best practices from the last PageSpeed Insights check.</source>
+			</trans-unit>
+
+			<trans-unit id="widgets.pwa.title" xml:space="preserve">
+				<source>PWA score</source>
+			</trans-unit>
+			<trans-unit id="widgets.pwa.description" xml:space="preserve">
+				<source>Will show you the Lighthouse score on PWA from the last PageSpeed Insights check.</source>
+			</trans-unit>
+
+			<trans-unit id="widgets.seo.title" xml:space="preserve">
+				<source>SEO score</source>
+			</trans-unit>
+			<trans-unit id="widgets.seo.description" xml:space="preserve">
+				<source>Will show you the Lighthouse score on SEO from the last PageSpeed Insights check.</source>
+			</trans-unit>
+
+			<trans-unit id="widgets.history.title" xml:space="preserve">
+				<source>History of Lighthouse scores</source>
+			</trans-unit>
+			<trans-unit id="widgets.history.description" xml:space="preserve">
+				<source>Will show you the Lighthouse scores of all categories from the PageSpeed Insights checks of the last month.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

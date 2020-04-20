@@ -17,9 +17,14 @@
     "bin-dir": ".build/bin"
   },
   "require": {
-    "typo3/cms-core": "^9.5",
+    "typo3/cms-core": "^9.5 || ^10",
     "ext-curl": "*",
     "ext-json": "*"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "page_speed_insights"
+    }
   },
   "autoload": {
     "psr-4": {

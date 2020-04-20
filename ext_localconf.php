@@ -14,4 +14,17 @@ call_user_func(function () {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/db_layout.php']['drawHeaderHook'][]
             = \Haassie\PageSpeedInsights\Hooks\DrawHeaderHook::class . '->render';
     }
+
+    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('dashboard')) {
+        // Add module configuration
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(
+            'module.tx_dashboard {
+    view {
+        templateRootPaths.1585898586 = EXT:page_speed_insights/Resources/Private/Templates/
+        partialRootPaths.1585898586 = EXT:page_speed_insights/Resources/Private/Partials/
+        layoutRootPaths.1585898586 = EXT:page_speed_insights/Resources/Private/Layouts/
+    }
+}'
+        );
+    }
 });

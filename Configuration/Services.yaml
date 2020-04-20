@@ -1,0 +1,134 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Haassie\PageSpeedInsights\:
+    resource: '../Classes/*'
+
+  dashboard.dataprovider.lighthouse.accessibility:
+    class: 'Haassie\PageSpeedInsights\Widgets\Provider\ScoreDataProvider'
+    arguments:
+      $field: 'accessibility_score'
+      $strategy: 'mobile'
+
+  dashboard.dataprovider.lighthouse.performance:
+    class: 'Haassie\PageSpeedInsights\Widgets\Provider\ScoreDataProvider'
+    arguments:
+      $field: 'performance_score'
+      $strategy: 'mobile'
+
+  dashboard.dataprovider.lighthouse.seo:
+    class: 'Haassie\PageSpeedInsights\Widgets\Provider\ScoreDataProvider'
+    arguments:
+      $field: 'seo_score'
+      $strategy: 'mobile'
+
+  dashboard.dataprovider.lighthouse.pwa:
+    class: 'Haassie\PageSpeedInsights\Widgets\Provider\ScoreDataProvider'
+    arguments:
+      $field: 'pwa_score'
+      $strategy: 'mobile'
+
+  dashboard.dataprovider.lighthouse.bestPractices:
+    class: 'Haassie\PageSpeedInsights\Widgets\Provider\ScoreDataProvider'
+    arguments:
+      $field: 'bestpractices_score'
+      $strategy: 'mobile'
+
+  dashboard.widget.lighthouse.accessibilityScore:
+    class: 'Haassie\PageSpeedInsights\Widgets\LighthouseScoreWidget'
+    arguments:
+      $dataProvider: '@dashboard.dataprovider.lighthouse.accessibility'
+      $view: '@dashboard.views.widget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'lighthouseAccessibility'
+        groupNames: 'psi'
+        title: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.accessibility.title'
+        description: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.accessibility.description'
+        iconIdentifier: 'content-widget-chart-pie'
+        additionalCssClasses: 'dashboard-item--chart'
+        height: 'medium'
+        width: 'small'
+
+  dashboard.widget.lighthouse.performanceScore:
+    class: 'Haassie\PageSpeedInsights\Widgets\LighthouseScoreWidget'
+    arguments:
+      $dataProvider: '@dashboard.dataprovider.lighthouse.performance'
+      $view: '@dashboard.views.widget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'lighthousePerformance'
+        groupNames: 'psi'
+        title: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.performance.title'
+        description: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.performance.description'
+        iconIdentifier: 'content-widget-chart-pie'
+        additionalCssClasses: 'dashboard-item--chart'
+        height: 'medium'
+        width: 'small'
+
+  dashboard.widget.lighthouse.seoScore:
+    class: 'Haassie\PageSpeedInsights\Widgets\LighthouseScoreWidget'
+    arguments:
+      $dataProvider: '@dashboard.dataprovider.lighthouse.seo'
+      $view: '@dashboard.views.widget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'lighthouseSeo'
+        groupNames: 'psi'
+        title: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.seo.title'
+        description: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.seo.description'
+        iconIdentifier: 'content-widget-chart-pie'
+        additionalCssClasses: 'dashboard-item--chart'
+        height: 'medium'
+        width: 'small'
+
+  dashboard.widget.lighthouse.bestPracticesScore:
+    class: 'Haassie\PageSpeedInsights\Widgets\LighthouseScoreWidget'
+    arguments:
+      $dataProvider: '@dashboard.dataprovider.lighthouse.bestPractices'
+      $view: '@dashboard.views.widget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'lighthouseBestPractices'
+        groupNames: 'psi'
+        title: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.bestPractices.title'
+        description: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.bestPractices.description'
+        iconIdentifier: 'content-widget-chart-pie'
+        additionalCssClasses: 'dashboard-item--chart'
+        height: 'medium'
+        width: 'small'
+
+  dashboard.widget.lighthouse.pwaScore:
+    class: 'Haassie\PageSpeedInsights\Widgets\LighthouseScoreWidget'
+    arguments:
+      $dataProvider: '@dashboard.dataprovider.lighthouse.pwa'
+      $view: '@dashboard.views.widget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'lighthousePwa'
+        groupNames: 'psi'
+        title: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.pwa.title'
+        description: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.pwa.description'
+        iconIdentifier: 'content-widget-chart-pie'
+        additionalCssClasses: 'dashboard-item--chart'
+        height: 'medium'
+        width: 'small'
+
+  dashboard.widget.lighthouse.scoreHistory:
+    class: 'Haassie\PageSpeedInsights\Widgets\LighthouseScoreHistoryWidget'
+    arguments:
+      $dataProvider: '@Haassie\PageSpeedInsights\Widgets\Provider\ScoreHistoryDataProvider'
+      $view: '@dashboard.views.widget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'lighthouseScoreHistory'
+        groupNames: 'psi'
+        title: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.history.title'
+        description: 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang.xlf:widgets.history.description'
+        iconIdentifier: 'content-widget-chart'
+        additionalCssClasses: 'dashboard-item--chart'
+        height: 'large'
+        width: 'large'
