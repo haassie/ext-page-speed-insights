@@ -49,5 +49,7 @@ class CheckPageSpeedInsightsCommand extends Command
             $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'], $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
             $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url);
         }
+
+        return 0;
     }
 }
