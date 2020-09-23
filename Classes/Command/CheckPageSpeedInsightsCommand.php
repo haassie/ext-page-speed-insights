@@ -27,6 +27,7 @@ class CheckPageSpeedInsightsCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $reference = 'command-' . time();
+        $errors = 0;
 
         $queryBuilderPages = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('pages')->createQueryBuilder();
         $result = $queryBuilderPages
@@ -48,10 +49,22 @@ class CheckPageSpeedInsightsCommand extends Command
 
             $strategies = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies'] ?: ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'];
             $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', $strategies, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
+            if (array_key_exists('error', $pageSpeedInsightsResultsMobile)) {
+                $errors = 10;
+                $output->writeln('<error>' . $row['uid'] . ': Check for ' . $url . ' failed for mobile. Error message: ' . $pageSpeedInsightsResultsMobile['error']['message'] . '</error>');
+            } else {
+                $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $strategies) . ') succeeded for mobile');
+            }
+
             $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', $strategies, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
-            $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $strategies) . ')');
+            if (array_key_exists('error', $pageSpeedInsightsResultsDesktop)) {
+                $errors = 10;
+                $output->writeln('<error>' . $row['uid'] . ': Check for ' . $url . ' failed for desktop. Error message: ' . $pageSpeedInsightsResultsDesktop['error']['message'] . '</error>');
+            } else {
+                $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $strategies) . ') succeeded for desktop');
+            }
         }
 
-        return 0;
+        return $errors;
     }
 }
