@@ -49,7 +49,7 @@ Strategy to show
 ----------------
 By default, your results are shown for mobile devices. If you want to view the results of desktop, just set :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow']` to :php:`desktop`.
 
-Only check specific strategies
+Only check specific categories
 ------------------------------
 Sometimes you are just not interested in all categories. By overriding :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories']` you can define which categories should be checked. If you want to disable the check on PWA features, you just use the following lines of code.
 
