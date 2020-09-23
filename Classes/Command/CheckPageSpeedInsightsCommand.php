@@ -45,9 +45,11 @@ class CheckPageSpeedInsightsCommand extends Command
             ] = PageSpeedInsightsUtility::getPageAndLanguageId($row['uid']);
 
             $url = PageSpeedInsightsUtility::getUrlForPage($pid, $languageId);
-            $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'], $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
-            $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'], $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
-            $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url);
+
+            $strategies = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies'] ?: ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'];
+            $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', $strategies, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
+            $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', $strategies, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
+            $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $strategies) . ')');
         }
 
         return 0;

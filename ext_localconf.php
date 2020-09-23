@@ -27,4 +27,12 @@ call_user_func(function () {
 }'
         );
     }
+
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies'] = [
+        'performance',
+        'seo',
+        'accessibility',
+        'best-practices',
+        'pwa'
+    ];
 });
