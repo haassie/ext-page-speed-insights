@@ -51,11 +51,11 @@ By default, your results are shown for mobile devices. If you want to view the r
 
 Only check specific strategies
 ------------------------------
-Sometimes you are just not interested in all strategies. By overriding :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies']` you can define which strategies should be checked. If you want to disable the check on PWA features, you just use the following lines of code.
+Sometimes you are just not interested in all categories. By overriding :php:`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories']` you can define which categories should be checked. If you want to disable the check on PWA features, you just use the following lines of code.
 
 .. code-block:: php
 
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies'] = [
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories'] = [
         'performance',
         'seo',
         'accessibility',

@@ -28,7 +28,7 @@ call_user_func(function () {
         );
     }
 
-    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies'] = [
+    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories'] = [
         'performance',
         'seo',
         'accessibility',

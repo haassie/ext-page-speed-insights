@@ -47,21 +47,21 @@ class CheckPageSpeedInsightsCommand extends Command
 
             $url = PageSpeedInsightsUtility::getUrlForPage($pid, $languageId);
 
-            $strategies = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategies'] ?: ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'];
-            $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', $strategies, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
+            $categories = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories'] ?: ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'];
+            $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', $categories, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
             if (array_key_exists('error', $pageSpeedInsightsResultsMobile)) {
                 $errors = 10;
                 $output->writeln('<error>' . $row['uid'] . ': Check for ' . $url . ' failed for mobile. Error message: ' . $pageSpeedInsightsResultsMobile['error']['message'] . '</error>');
             } else {
-                $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $strategies) . ') succeeded for mobile');
+                $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $categories) . ') succeeded for mobile');
             }
 
-            $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', $strategies, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
+            $pageSpeedInsightsResultsDesktop = PageSpeedInsightsUtility::checkUrl($url, 'desktop', $categories, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
             if (array_key_exists('error', $pageSpeedInsightsResultsDesktop)) {
                 $errors = 10;
                 $output->writeln('<error>' . $row['uid'] . ': Check for ' . $url . ' failed for desktop. Error message: ' . $pageSpeedInsightsResultsDesktop['error']['message'] . '</error>');
             } else {
-                $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $strategies) . ') succeeded for desktop');
+                $output->writeln($row['uid'] . ': ' . $row['slug'] . ': ' . $url . ' (' . implode(', ', $categories) . ') succeeded for desktop');
             }
         }
 
