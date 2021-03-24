@@ -3,18 +3,34 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  build-php:
+    name: Build PHP
+    runs-on: ubuntu-18.04
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        typo3: ['10', '11']
+        php: ['php7.4']
+        experimental: [false]
+        include:
+          - typo3: '11'
+            php: 'php8.0'
+            experimental: true
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    - name: CGL
-      run: composer run-script cgl
+      - uses: actions/checkout@v1
+      - name: Set up PHP Version
+        run: |
+          sudo update-alternatives --set php /usr/bin/${{ matrix.php }}
+          php -v
+      - name: Update Composer
+        run: |
+          sudo composer self-update
+          composer --version
+      - name: Install
+        run: |
+          composer require typo3/cms-core:^${{ matrix.typo3 }} typo3/cms-backend:^${{ matrix.typo3 }} typo3/cms-extbase:^${{ matrix.typo3 }} typo3/cms-fluid:^${{ matrix.typo3 }} typo3/cms-frontend:^${{ matrix.typo3 }} typo3/cms-install:^${{ matrix.typo3 }} --no-progress
+          git checkout composer.json
+      - name: CGL
+        run: composer cgl
