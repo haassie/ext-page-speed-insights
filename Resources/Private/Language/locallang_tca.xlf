@@ -84,6 +84,12 @@
             <trans-unit id="tx_pagespeedinsights_results.tab.language">
                 <source>Language</source>
             </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.webvitals">
+                <source>Web Vitals results</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_pagespeedinsights_results.lighthouse">
+                <source>Lighthouse results</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -15,7 +15,7 @@ $llPrefix = 'LLL:EXT:page_speed_insights/Resources/Private/Language/locallang_tc
             ]
         ],
         'tx_pagespeedinsights_results' => [
-            'label' => $llPrefix . 'pages.tx_pagespeedinsights_results',
+            'label' => '',
             'displayCond' => 'FIELD:tx_pagespeedinsights_check:REQ:true',
             'exclude' => true,
             'config' => [
