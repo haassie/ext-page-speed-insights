@@ -11,7 +11,6 @@ use TYPO3\CMS\Core\Crypto\Random;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class History extends AbstractNode
