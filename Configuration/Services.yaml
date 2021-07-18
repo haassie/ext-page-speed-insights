@@ -132,3 +132,9 @@ services:
         additionalCssClasses: 'dashboard-item--chart'
         height: 'large'
         width: 'large'
+        
+  Haassie\PageSpeedInsights\Command\CheckPageSpeedInsightsCommand:
+    tags:
+      - name: console.command
+        command: 'pagespeedinsights:run'
+        description: 'Check pages on PageSpeed Insight'
