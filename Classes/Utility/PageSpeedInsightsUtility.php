@@ -203,7 +203,7 @@ class PageSpeedInsightsUtility
      * @param string $labelFormat
      * @return array
      */
-    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $strategy = '', $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
+    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $strategy = '', $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = 'd-m-Y'): array
     {
         $labels = [];
         $dataPerformance = [];
@@ -213,7 +213,7 @@ class PageSpeedInsightsUtility
         $dataPwa = [];
 
         for ($daysBefore = $daysInPastToStartFrom; $daysBefore >= 0; $daysBefore-=$daysPerStep) {
-            $labels[] = strftime($labelFormat, strtotime('-' . $daysBefore . ' day'));
+            $labels[] = date($labelFormat, strtotime('-' . $daysBefore . ' day'));
             $startPeriod = strtotime('-' . $daysBefore . ' day 0:00:00');
             $endPeriod =  strtotime('-' . ($daysBefore - $daysPerStep + 1) . ' day 23:59:59');
 
