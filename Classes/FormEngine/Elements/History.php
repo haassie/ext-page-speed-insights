@@ -56,10 +56,10 @@ class History extends AbstractNode
         }
 
         $languageId = 0;
-        if (array_key_exists('0', (array)$this->data['databaseRow']['sys_language_uid']) &&
-            $this->data['databaseRow']['sys_language_uid'][0]
-        ) {
+        if (is_array($this->data['databaseRow']['sys_language_uid']) && ($this->data['databaseRow']['sys_language_uid'][0] ?? false)) {
             $languageId = (int)$this->data['databaseRow']['sys_language_uid'][0];
+        } elseif (is_numeric($this->data['databaseRow']['sys_language_uid'])) {
+            $languageId = (int)$this->data['databaseRow']['sys_language_uid'];
         }
 
         $resultArray = $this->initializeResultArray();
