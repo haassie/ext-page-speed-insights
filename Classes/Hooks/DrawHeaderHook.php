@@ -38,7 +38,7 @@ class DrawHeaderHook
         $this->templateView->getRenderingContext()->getTemplatePaths()->fillDefaultsByPackageName('page_speed_insights');
         $this->templateView->setTemplate('DrawHeaderHook');
 
-        $this->strategyToShow = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?: 'mobile';
+        $this->strategyToShow = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?? 'mobile';
     }
 
     public function render(): string
