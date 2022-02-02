@@ -45,7 +45,7 @@ class History extends AbstractNode
         $this->templateView->getRenderingContext()->getTemplatePaths()->fillDefaultsByPackageName('page_speed_insights');
         $this->templateView->setTemplate('History');
 
-        $this->strategyToShow = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?: 'mobile';
+        $this->strategyToShow = ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?? '') ?: 'mobile';
     }
 
     public function render()
