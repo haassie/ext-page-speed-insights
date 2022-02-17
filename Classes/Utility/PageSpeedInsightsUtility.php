@@ -55,7 +55,6 @@ class PageSpeedInsightsUtility
 
         $rawData = curl_exec($ch);
         $data = json_decode($rawData);
-        $categoriesArray = (array)$data->lighthouseResult->categories;
 
         curl_close($ch);
 
@@ -73,6 +72,7 @@ class PageSpeedInsightsUtility
             return $returnData;
         }
 
+        $categoriesArray = (array)$data->lighthouseResult->categories;
         if (property_exists($categoriesArray['performance'], 'score')) {
             $returnData['performance']['score'] = (float)$categoriesArray['performance']->score * 100;
         }
@@ -187,7 +187,7 @@ class PageSpeedInsightsUtility
             ->execute()
             ->fetch();
 
-        return (string)$data['reference'];
+        return (string)($data['reference'] ?? $strategy . '-');
     }
 
     /**
@@ -203,7 +203,7 @@ class PageSpeedInsightsUtility
      * @param string $labelFormat
      * @return array
      */
-    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $strategy = '', $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = '%d-%m-%Y'): array
+    public static function getChartData($daysInPastToStartFrom, $daysPerStep, $pageId = 0, $strategy = '', $chartColor1 = '', $chartColor2 = '', $chartColor3 = '', $chartColor4 = '', $chartColor5 = '', $labelFormat = 'd-m-Y'): array
     {
         $labels = [];
         $dataPerformance = [];
@@ -213,7 +213,7 @@ class PageSpeedInsightsUtility
         $dataPwa = [];
 
         for ($daysBefore = $daysInPastToStartFrom; $daysBefore >= 0; $daysBefore-=$daysPerStep) {
-            $labels[] = strftime($labelFormat, strtotime('-' . $daysBefore . ' day'));
+            $labels[] = date($labelFormat, strtotime('-' . $daysBefore . ' day'));
             $startPeriod = strtotime('-' . $daysBefore . ' day 0:00:00');
             $endPeriod =  strtotime('-' . ($daysBefore - $daysPerStep + 1) . ' day 23:59:59');
 
