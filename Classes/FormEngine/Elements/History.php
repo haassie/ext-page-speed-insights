@@ -45,7 +45,7 @@ class History extends AbstractNode
         $this->templateView->getRenderingContext()->getTemplatePaths()->fillDefaultsByPackageName('page_speed_insights');
         $this->templateView->setTemplate('History');
 
-        $this->strategyToShow = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?: 'mobile';
+        $this->strategyToShow = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['strategyToShow'] ?? 'mobile';
     }
 
     public function render()
@@ -55,12 +55,7 @@ class History extends AbstractNode
             $pageId = $this->data['vanillaUid'];
         }
 
-        $languageId = 0;
-        if (array_key_exists('0', (array)$this->data['databaseRow']['sys_language_uid']) &&
-            $this->data['databaseRow']['sys_language_uid'][0]
-        ) {
-            $languageId = (int)$this->data['databaseRow']['sys_language_uid'][0];
-        }
+        $languageId = (int)$this->data['databaseRow']['sys_language_uid'] ?? 0;
 
         $resultArray = $this->initializeResultArray();
 

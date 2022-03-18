@@ -47,7 +47,7 @@ class CheckPageSpeedInsightsCommand extends Command
 
             $url = PageSpeedInsightsUtility::getUrlForPage($pid, $languageId);
 
-            $categories = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories'] ?: ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'];
+            $categories = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['page_speed_insights']['categories'] ?? ['performance', 'seo', 'accessibility', 'best-practices', 'pwa'];
             $pageSpeedInsightsResultsMobile = PageSpeedInsightsUtility::checkUrl($url, 'mobile', $categories, $reference, $pageId, $languageId, $pid, (string)$input->getArgument('key'));
             if (array_key_exists('error', $pageSpeedInsightsResultsMobile)) {
                 $errors = 10;
