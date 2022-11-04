@@ -187,7 +187,7 @@ class PageSpeedInsightsUtility
             ->execute()
             ->fetch();
 
-        return (string)$data['reference'];
+        return (string)($data['reference'] ?? '-');
     }
 
     /**
@@ -325,8 +325,6 @@ class PageSpeedInsightsUtility
             ->where(...$conditions)
             ->execute()
             ->fetch();
-
-        list($mode, $tstamp) = GeneralUtility::trimExplode('-', $lastRun);
 
         return (int)$data['avg'];
     }
